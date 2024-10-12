@@ -3,6 +3,9 @@
 # use this set if outside visual studio to set toolchain
 #set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_FIND_LIBRARY_SUFFIXES .a .lib)
+set(BUILD_SHARED_LIBS OFF)
+
 
 project(QuizGame)
 
@@ -17,4 +20,4 @@ find_package(imgui CONFIG REQUIRED)
 find_package(GameNetworkingSockets CONFIG REQUIRED)
 
 add_subdirectory("Client")
-add_subdirectory("Server")
+add_subdirectory("ServerCpp")

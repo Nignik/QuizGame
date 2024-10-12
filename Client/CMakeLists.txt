@@ -22,7 +22,7 @@ file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
 add_executable(Client ${SOURCES})
 target_include_directories(Client PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_link_libraries(Client PRIVATE glfw glad::glad glm::glm OpenGL::GL imgui::imgui GameNetworkingSockets::GameNetworkingSockets)
+target_link_libraries(Client PRIVATE glfw glad::glad glm::glm OpenGL::GL imgui::imgui GameNetworkingSockets::GameNetworkingSockets Common)
 
 add_custom_command(
     TARGET Client POST_BUILD

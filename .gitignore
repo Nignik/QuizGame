@@ -1,4 +1,4 @@
 test.bat
 CMakeSettings.json
-.vs/
-out/
+**/.vs/
+**/out/

@@ -14,7 +14,7 @@ void UI::Render()
 		if (ImGui::InputText(inputField.name.c_str(), &inputField.val, ImGuiInputTextFlags_EnterReturnsTrue))
 		{
 			inputField.func(inputField.val);
-			inputField.val = "";
+			inputField.val.clear();
 			ImGui::SetKeyboardFocusHere(-1);
 		}
 	}

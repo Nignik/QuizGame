@@ -8,7 +8,10 @@
 
 int main()
 {
-	Server server;
+	Server::Init();
+	Server* server = Server::s_instance;
 
-	server.Run();
+	server->Run();
+
+	server->Shutdown();
 }

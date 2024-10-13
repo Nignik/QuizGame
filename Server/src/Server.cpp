@@ -1,11 +1,15 @@
 #include "Server.h"
 
+Server* Server::s_instance = nullptr;
+
 HSteamListenSocket Server::m_listenSocket = k_HSteamListenSocket_Invalid;
 HSteamNetPollGroup Server::m_pollGroup = k_HSteamNetPollGroup_Invalid;
 bool Server::m_isRunning = true;
 
-Server::Server()
+void Server::Init()
 {
+	s_instance = new Server();
+
 	SteamDatagramErrMsg errMsg;
 	if (!GameNetworkingSockets_Init(nullptr, errMsg))
 	{
@@ -34,9 +38,17 @@ Server::Server()
 	}
 
 	std::cout << "Server listening on port " << serverAddress.m_port << "\n";
+
+	std::vector<QuizCard> cards = {
+		{"a", "b"},
+		{"ab", "cd"}
+	};
+	auto shuffle = std::make_shared<RandomShuffle>();
+
+	s_instance->m_quiz = std::make_unique<Quiz>(cards, shuffle);
 }
 
-Server::~Server()
+void Server::Shutdown()
 {
 	if (m_listenSocket != k_HSteamListenSocket_Invalid)
 	{
@@ -51,6 +63,9 @@ Server::~Server()
 	}
 
 	GameNetworkingSockets_Kill();
+
+	delete s_instance;
+	s_instance = nullptr;
 }
 
 void Server::Run()
@@ -65,6 +80,37 @@ void Server::Run()
 	}
 }
 
+void Server::MessageQuestion(HSteamNetConnection& connection)
+{
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::SERVER_QUESTION);
+
+	ServerQuestion* message = envelope.mutable_serverquestion();
+	message->set_question(m_quiz->GetCurrentQuestion());
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
+}
+
+void Server::MessageVerdict(HSteamNetConnection& connection, bool correct)
+{
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::SERVER_VERDICT);
+
+	ServerVerdict* message = envelope.mutable_serververdict();
+	message->set_answer(m_players[connection].answer);
+	message->set_correct(correct);
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
+}
+
 void Server::PollMessages()
 {
 	ISteamNetworkingMessage* incomingMsg = nullptr;
@@ -72,15 +118,41 @@ void Server::PollMessages()
 	if (numMsgs > 0 && incomingMsg != nullptr)
 	{
 		std::string receivedData(static_cast<char*>(incomingMsg->m_pData), incomingMsg->m_cbSize);
-		std::cout << "Received message: " << receivedData << " from: " << incomingMsg->m_conn << "\n";
 
-		// Echo the message back to the sender
-		HSteamNetConnection conn = incomingMsg->m_conn;
-		SteamNetworkingSockets()->SendMessageToConnection(
-			conn, incomingMsg->m_pData, incomingMsg->m_cbSize, k_nSteamNetworkingSend_Reliable, nullptr);
+		MessageEnvelope envelope;
+		envelope.ParseFromString(receivedData);
+		switch (envelope.type())
+		{
+			case MessageEnvelope::CLIENT_CONNECT:		OnClientConnect(envelope.clientconnect(), incomingMsg->m_conn);			break;
+			case MessageEnvelope::CLIENT_ANSWER:		OnClientAnswer(envelope.clientanswer(), incomingMsg->m_conn);			break;
+
+			default:									std::cout << "Reveived invalid packet" << std::endl;					break;
+		}
 
 		incomingMsg->Release();
 	}
+}
+
+void Server::OnClientConnect(const ClientConnect& clientConnect, HSteamNetConnection& connection)
+{
+	std::cout << "New connection: " << clientConnect.name() << " from: " << connection << "\n\n";
+
+	m_players[connection] = m_quiz->GetCurrentCard();
+	MessageQuestion(connection);
+
+	m_quiz->NextCard();
+}
+
+void Server::OnClientAnswer(const ClientAnswer& clientAnswer, HSteamNetConnection& connection)
+{
+	std::cout << "Client answer: " << clientAnswer.answer() << " from: " << clientAnswer.name() << '(' << connection << ")\n\n";
+	
+	MessageVerdict(connection, clientAnswer.answer() == m_players[connection].answer ? true : false);
+
+	m_players[connection] = m_quiz->GetCurrentCard();
+	MessageQuestion(connection);
+
+	m_quiz->NextCard();
 }
 
 void Server::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t* pInfo)
@@ -95,8 +167,6 @@ void Server::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCa
 
 			// Assign the connection to the poll group
 			SteamNetworkingSockets()->SetConnectionPollGroup(pInfo->m_hConn, m_pollGroup);
-
-			std::cout << "Accepted connection from client.\n";
 		}
 	}
 

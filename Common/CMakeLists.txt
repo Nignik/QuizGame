@@ -14,9 +14,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
 
-add_library(Common STATIC ${SOURCES})
+find_package(Protobuf CONFIG REQUIRED)
+file(GLOB PROTO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.proto")
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTO_FILES})
 
-target_include_directories(Common PUBLIC 
+add_library(Common STATIC ${SOURCES} ${PROTO_SRCS} ${PROTO_HDRS})
+
+include_directories(${PROTOBUF_INCLUDE_DIRS})
+target_link_libraries(Common PRIVATE protobuf::libprotobuf)
+
+target_include_directories(Common PUBLIC
+    ${PROTOBUF_INCLUDE_DIRS}
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:include/Common>)
 

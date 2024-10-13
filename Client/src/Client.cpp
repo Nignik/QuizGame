@@ -1,12 +1,16 @@
 #include "Client.h"
 
+Client* Client::s_instance = nullptr;
+
 HSteamNetConnection Client::m_connection = k_HSteamNetConnection_Invalid;
 bool Client::m_isConnected = false;
 bool Client::m_isRunning = true;
 
-Client::Client(std::string serverAddress)
+void Client::Init(std::string serverAddress)
 {
-	uint16 port = 27020; // Should match the server port
+	s_instance = new Client();
+
+	uint16 port = 27020;
 
 	SteamDatagramErrMsg errMsg;
 	if (!GameNetworkingSockets_Init(nullptr, errMsg))
@@ -18,22 +22,22 @@ Client::Client(std::string serverAddress)
 	SteamNetworkingUtils()->SetGlobalCallback_SteamNetConnectionStatusChanged(OnSteamNetConnectionStatusChanged);
 
 	// Create server address
-	m_serverAddress.Clear();
-	if (!m_serverAddress.ParseString(serverAddress.c_str()))
+	s_instance->m_serverAddress.Clear();
+	if (!s_instance->m_serverAddress.ParseString(serverAddress.c_str()))
 	{
 		std::cerr << "Invalid server address.\n";
 	}
-	m_serverAddress.m_port = port;
+	s_instance->m_serverAddress.m_port = port;
 
 	// Connect to the server
-	m_connection = SteamNetworkingSockets()->ConnectByIPAddress(m_serverAddress, 0, nullptr);
+	m_connection = SteamNetworkingSockets()->ConnectByIPAddress(s_instance->m_serverAddress, 0, nullptr);
 	if (m_connection == k_HSteamNetConnection_Invalid)
 	{
 		std::cerr << "Failed to connect to server.\n";
 	}
 }
 
-Client::~Client()
+void Client::Shutdown()
 {
 	if (m_connection != k_HSteamNetConnection_Invalid)
 	{
@@ -42,6 +46,9 @@ Client::~Client()
 	}
 
 	GameNetworkingSockets_Kill();
+
+	delete s_instance;
+	s_instance = nullptr;
 }
 
 void Client::OnTick()
@@ -49,7 +56,6 @@ void Client::OnTick()
 	SteamNetworkingSockets()->RunCallbacks();
 
 	PollMessages();
-	SendMessages();
 }
 
 bool Client::IsRunning()
@@ -57,14 +63,20 @@ bool Client::IsRunning()
 	return m_isRunning;
 }
 
-void Client::SendMsg(std::string msg)
+void Client::SendAnswer(std::string& answer)
 {
-	if (m_isConnected)
-	{
-		SteamNetworkingSockets()->SendMessageToConnection(
-			m_connection, msg.c_str(), msg.size(), k_nSteamNetworkingSend_Reliable, nullptr);
-		std::cout << "Sent message: " << msg << "\n";
-	}
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::CLIENT_ANSWER);
+
+	ClientAnswer* message = envelope.mutable_clientanswer();
+	message->set_name(m_name);
+	message->set_answer(answer);
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		m_connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
 }
 
 void Client::PollMessages()
@@ -74,21 +86,16 @@ void Client::PollMessages()
 	if (numMsgs > 0 && incomingMsg != nullptr)
 	{
 		std::string receivedData(static_cast<char*>(incomingMsg->m_pData), incomingMsg->m_cbSize);
-		std::cout << "Received message from server: " << receivedData << "\n";
-		incomingMsg->Release();
-	}
-}
 
-void Client::SendMessages()
-{
-	static auto lastSendTime = std::chrono::steady_clock::now();
-	if (m_isConnected && std::chrono::steady_clock::now() - lastSendTime > std::chrono::seconds(5))
-	{
-		const char* data = "Hello from Client!";
-		SteamNetworkingSockets()->SendMessageToConnection(
-			m_connection, data, strlen(data), k_nSteamNetworkingSend_Reliable, nullptr);
-		lastSendTime = std::chrono::steady_clock::now();
-		std::cout << "Sent message: " << data << "\n";
+		MessageEnvelope envelope;
+		envelope.ParseFromString(receivedData);
+		switch (envelope.type())
+		{
+			case MessageEnvelope::SERVER_QUESTION: OnQuestionReceived(envelope.serverquestion());		break;
+			case MessageEnvelope::SERVER_VERDICT: OnVerdictReceived(envelope.serververdict());			break;
+		}
+		
+		incomingMsg->Release();
 	}
 }
 
@@ -96,6 +103,7 @@ void Client::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCa
 {
 	if (pInfo->m_info.m_eState == k_ESteamNetworkingConnectionState_Connected)
 	{
+		s_instance->OnConnected();
 		std::cout << "Connected to server.\n";
 		m_isConnected = true;
 	}
@@ -106,4 +114,30 @@ void Client::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCa
 		m_isConnected = false;
 		m_isRunning = false;
 	}
+}
+
+void Client::OnConnected()
+{
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::CLIENT_CONNECT);
+
+	ClientConnect* message = envelope.mutable_clientconnect();
+	message->set_name(m_name);
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		m_connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
+}
+
+void Client::OnQuestionReceived(const ServerQuestion& question)
+{
+	std::cout << "Question: " << question.question() << "\n\n";
+}
+
+void Client::OnVerdictReceived(const ServerVerdict& verdict)
+{
+	std::cout << "The correct answer was: " << verdict.answer() << std::endl;
+	std::cout << "Your answer is: " << (verdict.correct() ? "correct" : "incorrect") << "\n\n";
 }

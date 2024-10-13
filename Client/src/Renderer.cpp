@@ -71,7 +71,6 @@ void Renderer::Cleanup()
 
 void Renderer::StartFrame()
 {
-	glfwPollEvents();
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
@@ -90,6 +89,7 @@ void Renderer::RenderFrame()
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 	glfwSwapBuffers(m_window);
+	glfwPollEvents();
 }
 
 bool Renderer::IsRunning()

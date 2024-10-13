@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+message ClientConnect {
+    string name = 1;
+}
+
+message ClientAnswer {
+    string name = 1;
+    string answer = 2;
+}
+
+message ServerQuestion {
+    string question = 1;
+}
+
+message ServerVerdict {
+    string answer = 1;
+    bool correct = 2;
+}
+
+message MessageEnvelope {
+  enum MessageType {
+    CLIENT_CONNECT = 0;
+    CLIENT_ANSWER = 1;
+    SERVER_QUESTION = 2;
+    SERVER_VERDICT = 3;
+  }
+
+  MessageType type = 1;
+  oneof payload {
+    ClientConnect clientConnect = 2;
+    ClientAnswer clientAnswer = 3;
+    ServerQuestion serverQuestion = 4;
+    ServerVerdict serverVerdict = 5;
+  }
+}

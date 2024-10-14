@@ -1,29 +1,50 @@
 #include "UserInterface.h"
 
-UI::UI()
+UI::UI(InputField&& inputField, QuizOptions&& quizOptions)
+	: m_inputField(std::move(inputField)),
+	m_quizOptions(std::move(quizOptions))
 {
 	ImGui::StyleColorsDark();
 }
 
 void UI::Render()
 {
+	RenderInputField();
+	RenderQuizOptions();
+}
+
+void UI::RenderInputField()
+{
 	ImGui::Begin("Input");
 
-	for (auto& inputField : m_inputFields)
+	if (ImGui::InputText(m_inputField.label.c_str(), &m_inputField.val, ImGuiInputTextFlags_EnterReturnsTrue))
 	{
-		if (ImGui::InputText(inputField.name.c_str(), &inputField.val, ImGuiInputTextFlags_EnterReturnsTrue))
-		{
-			inputField.func(inputField.val);
-			inputField.val.clear();
-			ImGui::SetKeyboardFocusHere(-1);
-		}
+		m_inputField.func(m_inputField.val);
+		m_inputField.val.clear();
+		ImGui::SetKeyboardFocusHere(-1);
 	}
 
 	ImGui::End();
 }
 
-void UI::AddInputField(InputField&& inputField)
+void UI::RenderQuizOptions()
 {
-	m_inputFields.push_back(inputField);
+	ImGui::Begin("Quiz creator");
+
+	if (ImGui::Button(m_quizOptions.createQuiz.label.c_str()))
+	{
+		m_quizOptions.createQuiz.onClick();
+	}
+
+	ImGui::Text("Quiz files: ");
+	for (auto& quiz : m_quizOptions.quizPaths)
+	{
+		if (ImGui::Selectable(quiz.c_str()))
+		{
+			m_quizOptions.setPath(quiz);
+		}
+	}
+
+	ImGui::End();
 }
 

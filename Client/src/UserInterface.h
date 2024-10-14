@@ -2,27 +2,43 @@
 
 #include <string>
 #include <functional>
+#include <string>
 
 #include <imgui.h>
 #include <imgui_stdlib.h>
 
 struct InputField
 {
-	std::string name;
+	std::string label;
 	std::function<void(std::string&)> func;
 
 	std::string val;
 };
 
+struct UIButton
+{
+	std::string label;
+	std::function<void()> onClick;
+};
+
+struct QuizOptions
+{
+	UIButton createQuiz;
+	std::vector<std::string> quizPaths{};
+	std::function<void(std::string&)> setPath;
+};
+
 class UI
 {
 public:
-	UI();
+	UI(InputField&& inputField, QuizOptions&& quizOptions);
 
 	void Render();
 
-	void AddInputField(InputField&& inputField);
+	void RenderInputField();
+	void RenderQuizOptions();
 
 private:
-	std::vector<InputField> m_inputFields;
+	InputField m_inputField;
+	QuizOptions m_quizOptions;
 };

@@ -14,10 +14,14 @@
 #include <Serializer.h>
 #include <Packets.pb.h>
 
+#include "QuizBlueprint.h"
+
 class Client
 {
 public:
 	static Client* s_instance;
+	QuizBlueprint m_quizBlueprint;
+	bool m_quizFilePathsAvailable = false;
 
 	Client(const Client&) = delete;
 	Client& operator=(const Client&) = delete;
@@ -29,8 +33,13 @@ public:
 	bool IsRunning();
 
 	void SendAnswer(std::string& answer);
+	void SendQuizFilePathsRequest();
+	void SendQuizChangeRequest();
 
 	void PollMessages();
+
+	bool QuizFilePathsAvailable();
+	std::vector<std::string> GetQuizFilePaths();
 
 private:
 	Client() = default;
@@ -42,9 +51,12 @@ private:
 
 	std::string m_name = "maks";
 
+	std::vector<std::string> m_quizFilePaths;
+
 	SteamNetworkingIPAddr m_serverAddress{};
 
 	void OnConnected();
+	void OnQuizFilePathsReceived(const QuizFilePaths& paths);
 	void OnQuestionReceived(const ServerQuestion& question);
 	void OnVerdictReceived(const ServerVerdict& verdict);
 

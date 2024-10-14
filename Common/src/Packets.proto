@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-message ClientConnect {
+message ClientLogin {
     string name = 1;
 }
 
@@ -18,19 +18,36 @@ message ServerVerdict {
     bool correct = 2;
 }
 
+message QuizFilePathsRequest {
+}
+
+message QuizFilePaths {
+    repeated string quizPaths = 1;
+}
+
+message QuizChangeRequest {
+    string quizPath = 1;
+}
+
 message MessageEnvelope {
   enum MessageType {
-    CLIENT_CONNECT = 0;
+    CLIENT_LOGIN = 0;
     CLIENT_ANSWER = 1;
     SERVER_QUESTION = 2;
     SERVER_VERDICT = 3;
+    QUIZ_CHANGE_REQUEST = 4;
+    QUIZ_FILE_PATHS_REQUEST = 5;
+    QUIZ_FILE_PATHS = 6;
   }
 
   MessageType type = 1;
   oneof payload {
-    ClientConnect clientConnect = 2;
+    ClientLogin clientLogin = 2;
     ClientAnswer clientAnswer = 3;
     ServerQuestion serverQuestion = 4;
     ServerVerdict serverVerdict = 5;
+    QuizChangeRequest quizChangeRequest = 6;
+    QuizFilePathsRequest quizFilePathsRequest = 7;
+    QuizFilePaths quizFilePaths = 8;
   }
 }

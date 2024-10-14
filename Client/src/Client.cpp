@@ -79,6 +79,35 @@ void Client::SendAnswer(std::string& answer)
 		m_connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
 }
 
+void Client::SendQuizFilePathsRequest()
+{
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::QUIZ_FILE_PATHS_REQUEST);
+
+	QuizFilePathsRequest* message = envelope.mutable_quizfilepathsrequest();
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		m_connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
+}
+
+void Client::SendQuizChangeRequest()
+{
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::QUIZ_CHANGE_REQUEST);
+
+	QuizChangeRequest* message = envelope.mutable_quizchangerequest();
+	message->set_quizpath(m_quizBlueprint.path);
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		m_connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
+}
+
 void Client::PollMessages()
 {
 	ISteamNetworkingMessage* incomingMsg = nullptr;
@@ -91,12 +120,23 @@ void Client::PollMessages()
 		envelope.ParseFromString(receivedData);
 		switch (envelope.type())
 		{
-			case MessageEnvelope::SERVER_QUESTION: OnQuestionReceived(envelope.serverquestion());		break;
-			case MessageEnvelope::SERVER_VERDICT: OnVerdictReceived(envelope.serververdict());			break;
+			case MessageEnvelope::QUIZ_FILE_PATHS:		OnQuizFilePathsReceived(envelope.quizfilepaths());			break;
+			case MessageEnvelope::SERVER_QUESTION:		OnQuestionReceived(envelope.serverquestion());			break;
+			case MessageEnvelope::SERVER_VERDICT:		OnVerdictReceived(envelope.serververdict());			break;
 		}
 		
 		incomingMsg->Release();
 	}
+}
+
+bool Client::QuizFilePathsAvailable()
+{
+	return m_quizFilePathsAvailable;
+}
+
+std::vector<std::string> Client::GetQuizFilePaths()
+{
+	return m_quizFilePaths;
 }
 
 void Client::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t* pInfo)
@@ -119,9 +159,9 @@ void Client::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCa
 void Client::OnConnected()
 {
 	MessageEnvelope envelope;
-	envelope.set_type(MessageEnvelope::CLIENT_CONNECT);
+	envelope.set_type(MessageEnvelope::CLIENT_LOGIN);
 
-	ClientConnect* message = envelope.mutable_clientconnect();
+	ClientLogin* message = envelope.mutable_clientlogin();
 	message->set_name(m_name);
 
 	std::string serializedData;
@@ -129,6 +169,16 @@ void Client::OnConnected()
 
 	SteamNetworkingSockets()->SendMessageToConnection(
 		m_connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
+}
+
+void Client::OnQuizFilePathsReceived(const QuizFilePaths& paths)
+{
+	for (int i = 0; i < paths.quizpaths_size(); i++)
+	{
+		m_quizFilePaths.push_back(paths.quizpaths(i));
+	}
+
+	m_quizFilePathsAvailable = true;
 }
 
 void Client::OnQuestionReceived(const ServerQuestion& question)

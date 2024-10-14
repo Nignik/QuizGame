@@ -7,11 +7,17 @@
 #include <map>
 #include <steam/steamnetworkingsockets.h>
 #include <steam/isteamnetworkingutils.h>
+#include <filesystem>
+#include <fstream>
 
 #include <Serializer.h>
 #include <Packets.pb.h>
 
 #include "Quiz.h"
+#include "FilesHandler.h"
+
+
+namespace fs = std::filesystem;
 
 class Server
 {
@@ -24,9 +30,11 @@ public:
 	static void Init();
 	static void Shutdown();
 
+	void LoadQuiz(fs::path filePath);
+
 	void Run();
-	void MessageQuestion(HSteamNetConnection& connection);
-	void MessageVerdict(HSteamNetConnection& connection, bool correct);
+	void SendQuestion(const HSteamNetConnection& connection);
+	void SendVerdict(HSteamNetConnection& connection, bool correct);
 
 private:
 	Server() = default;
@@ -41,7 +49,10 @@ private:
 	static bool m_isRunning;
 
 	void PollMessages();
-	void OnClientConnect(const ClientConnect& clientConnect, HSteamNetConnection& connection);
+
+	void OnPlayerConnect(HSteamNetConnection& connection);
+	void OnPlayerDisconnect(HSteamNetConnection& connection);
+	void OnPlayerLogin(const ClientLogin& clientLogin, HSteamNetConnection& connection);
 	void OnClientAnswer(const ClientAnswer& clientAnswer, HSteamNetConnection& connection);
 
 	static void OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t* pInfo);

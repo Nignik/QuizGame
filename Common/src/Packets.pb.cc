@@ -63,8 +63,60 @@ struct ServerQuestionDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerQuestionDefaultTypeInternal _ServerQuestion_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR QuizFilePathsRequest::QuizFilePathsRequest(::_pbi::ConstantInitialized) {}
+struct QuizFilePathsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QuizFilePathsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QuizFilePathsRequestDefaultTypeInternal() {}
+  union {
+    QuizFilePathsRequest _instance;
+  };
+};
 
-inline constexpr ClientConnect::Impl_::Impl_(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QuizFilePathsRequestDefaultTypeInternal _QuizFilePathsRequest_default_instance_;
+
+inline constexpr QuizFilePaths::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : quizpaths_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR QuizFilePaths::QuizFilePaths(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct QuizFilePathsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QuizFilePathsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QuizFilePathsDefaultTypeInternal() {}
+  union {
+    QuizFilePaths _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QuizFilePathsDefaultTypeInternal _QuizFilePaths_default_instance_;
+
+inline constexpr QuizChangeRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : quizpath_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR QuizChangeRequest::QuizChangeRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct QuizChangeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QuizChangeRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QuizChangeRequestDefaultTypeInternal() {}
+  union {
+    QuizChangeRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QuizChangeRequestDefaultTypeInternal _QuizChangeRequest_default_instance_;
+
+inline constexpr ClientLogin::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : name_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -72,18 +124,18 @@ inline constexpr ClientConnect::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ClientConnect::ClientConnect(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ClientLogin::ClientLogin(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ClientConnectDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ClientConnectDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ClientConnectDefaultTypeInternal() {}
+struct ClientLoginDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ClientLoginDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ClientLoginDefaultTypeInternal() {}
   union {
-    ClientConnect _instance;
+    ClientLogin _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientConnectDefaultTypeInternal _ClientConnect_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientLoginDefaultTypeInternal _ClientLogin_default_instance_;
 
 inline constexpr ClientAnswer::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -129,21 +181,21 @@ struct MessageEnvelopeDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageEnvelopeDefaultTypeInternal _MessageEnvelope_default_instance_;
-static ::_pb::Metadata file_level_metadata_src_2fPackets_2eproto[5];
+static ::_pb::Metadata file_level_metadata_src_2fPackets_2eproto[8];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_src_2fPackets_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_src_2fPackets_2eproto = nullptr;
 const ::uint32_t TableStruct_src_2fPackets_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::ClientConnect, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::ClientLogin, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::ClientConnect, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::ClientLogin, _impl_.name_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::ClientAnswer, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -174,6 +226,32 @@ const ::uint32_t TableStruct_src_2fPackets_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::ServerVerdict, _impl_.answer_),
     PROTOBUF_FIELD_OFFSET(::ServerVerdict, _impl_.correct_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::QuizFilePathsRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::QuizFilePaths, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::QuizFilePaths, _impl_.quizpaths_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::QuizChangeRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::QuizChangeRequest, _impl_.quizpath_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _internal_metadata_),
     ~0u,  // no _extensions_
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _impl_._oneof_case_[0]),
@@ -186,52 +264,68 @@ const ::uint32_t TableStruct_src_2fPackets_2eproto::offsets[] PROTOBUF_SECTION_V
     ::_pbi::kInvalidFieldOffsetTag,
     ::_pbi::kInvalidFieldOffsetTag,
     ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _impl_.payload_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::ClientConnect)},
+        {0, -1, -1, sizeof(::ClientLogin)},
         {9, -1, -1, sizeof(::ClientAnswer)},
         {19, -1, -1, sizeof(::ServerQuestion)},
         {28, -1, -1, sizeof(::ServerVerdict)},
-        {38, -1, -1, sizeof(::MessageEnvelope)},
+        {38, -1, -1, sizeof(::QuizFilePathsRequest)},
+        {46, -1, -1, sizeof(::QuizFilePaths)},
+        {55, -1, -1, sizeof(::QuizChangeRequest)},
+        {64, -1, -1, sizeof(::MessageEnvelope)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::_ClientConnect_default_instance_._instance,
+    &::_ClientLogin_default_instance_._instance,
     &::_ClientAnswer_default_instance_._instance,
     &::_ServerQuestion_default_instance_._instance,
     &::_ServerVerdict_default_instance_._instance,
+    &::_QuizFilePathsRequest_default_instance_._instance,
+    &::_QuizFilePaths_default_instance_._instance,
+    &::_QuizChangeRequest_default_instance_._instance,
     &::_MessageEnvelope_default_instance_._instance,
 };
 const char descriptor_table_protodef_src_2fPackets_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\021src/Packets.proto\"\035\n\rClientConnect\022\014\n\004"
-    "name\030\001 \001(\t\",\n\014ClientAnswer\022\014\n\004name\030\001 \001(\t"
-    "\022\016\n\006answer\030\002 \001(\t\"\"\n\016ServerQuestion\022\020\n\010qu"
-    "estion\030\001 \001(\t\"0\n\rServerVerdict\022\016\n\006answer\030"
-    "\001 \001(\t\022\017\n\007correct\030\002 \001(\010\"\313\002\n\017MessageEnvelo"
-    "pe\022*\n\004type\030\001 \001(\0162\034.MessageEnvelope.Messa"
-    "geType\022\'\n\rclientConnect\030\002 \001(\0132\016.ClientCo"
-    "nnectH\000\022%\n\014clientAnswer\030\003 \001(\0132\r.ClientAn"
-    "swerH\000\022)\n\016serverQuestion\030\004 \001(\0132\017.ServerQ"
-    "uestionH\000\022\'\n\rserverVerdict\030\005 \001(\0132\016.Serve"
-    "rVerdictH\000\"]\n\013MessageType\022\022\n\016CLIENT_CONN"
-    "ECT\020\000\022\021\n\rCLIENT_ANSWER\020\001\022\023\n\017SERVER_QUEST"
-    "ION\020\002\022\022\n\016SERVER_VERDICT\020\003B\t\n\007payloadb\006pr"
-    "oto3"
+    "\n\021src/Packets.proto\"\033\n\013ClientLogin\022\014\n\004na"
+    "me\030\001 \001(\t\",\n\014ClientAnswer\022\014\n\004name\030\001 \001(\t\022\016"
+    "\n\006answer\030\002 \001(\t\"\"\n\016ServerQuestion\022\020\n\010ques"
+    "tion\030\001 \001(\t\"0\n\rServerVerdict\022\016\n\006answer\030\001 "
+    "\001(\t\022\017\n\007correct\030\002 \001(\010\"\026\n\024QuizFilePathsReq"
+    "uest\"\"\n\rQuizFilePaths\022\021\n\tquizPaths\030\001 \003(\t"
+    "\"%\n\021QuizChangeRequest\022\020\n\010quizPath\030\001 \001(\t\""
+    "\242\004\n\017MessageEnvelope\022*\n\004type\030\001 \001(\0162\034.Mess"
+    "ageEnvelope.MessageType\022#\n\013clientLogin\030\002"
+    " \001(\0132\014.ClientLoginH\000\022%\n\014clientAnswer\030\003 \001"
+    "(\0132\r.ClientAnswerH\000\022)\n\016serverQuestion\030\004 "
+    "\001(\0132\017.ServerQuestionH\000\022\'\n\rserverVerdict\030"
+    "\005 \001(\0132\016.ServerVerdictH\000\022/\n\021quizChangeReq"
+    "uest\030\006 \001(\0132\022.QuizChangeRequestH\000\0225\n\024quiz"
+    "FilePathsRequest\030\007 \001(\0132\025.QuizFilePathsRe"
+    "questH\000\022\'\n\rquizFilePaths\030\010 \001(\0132\016.QuizFil"
+    "ePathsH\000\"\246\001\n\013MessageType\022\020\n\014CLIENT_LOGIN"
+    "\020\000\022\021\n\rCLIENT_ANSWER\020\001\022\023\n\017SERVER_QUESTION"
+    "\020\002\022\022\n\016SERVER_VERDICT\020\003\022\027\n\023QUIZ_CHANGE_RE"
+    "QUEST\020\004\022\033\n\027QUIZ_FILE_PATHS_REQUEST\020\005\022\023\n\017"
+    "QUIZ_FILE_PATHS\020\006B\t\n\007payloadb\006proto3"
 };
 static ::absl::once_flag descriptor_table_src_2fPackets_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_src_2fPackets_2eproto = {
     false,
     false,
-    524,
+    836,
     descriptor_table_protodef_src_2fPackets_2eproto,
     "src/Packets.proto",
     &descriptor_table_src_2fPackets_2eproto_once,
     nullptr,
     0,
-    5,
+    8,
     schemas,
     file_default_instances,
     TableStruct_src_2fPackets_2eproto::offsets,
@@ -262,17 +356,20 @@ const ::google::protobuf::EnumDescriptor* MessageEnvelope_MessageType_descriptor
   return file_level_enum_descriptors_src_2fPackets_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t MessageEnvelope_MessageType_internal_data_[] = {
-    262144u, 0u, };
+    458752u, 0u, };
 bool MessageEnvelope_MessageType_IsValid(int value) {
-  return 0 <= value && value <= 3;
+  return 0 <= value && value <= 6;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-constexpr MessageEnvelope_MessageType MessageEnvelope::CLIENT_CONNECT;
+constexpr MessageEnvelope_MessageType MessageEnvelope::CLIENT_LOGIN;
 constexpr MessageEnvelope_MessageType MessageEnvelope::CLIENT_ANSWER;
 constexpr MessageEnvelope_MessageType MessageEnvelope::SERVER_QUESTION;
 constexpr MessageEnvelope_MessageType MessageEnvelope::SERVER_VERDICT;
+constexpr MessageEnvelope_MessageType MessageEnvelope::QUIZ_CHANGE_REQUEST;
+constexpr MessageEnvelope_MessageType MessageEnvelope::QUIZ_FILE_PATHS_REQUEST;
+constexpr MessageEnvelope_MessageType MessageEnvelope::QUIZ_FILE_PATHS;
 constexpr MessageEnvelope_MessageType MessageEnvelope::MessageType_MIN;
 constexpr MessageEnvelope_MessageType MessageEnvelope::MessageType_MAX;
 constexpr int MessageEnvelope::MessageType_ARRAYSIZE;
@@ -281,55 +378,55 @@ constexpr int MessageEnvelope::MessageType_ARRAYSIZE;
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 // ===================================================================
 
-class ClientConnect::_Internal {
+class ClientLogin::_Internal {
  public:
 };
 
-ClientConnect::ClientConnect(::google::protobuf::Arena* arena)
+ClientLogin::ClientLogin(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:ClientConnect)
+  // @@protoc_insertion_point(arena_constructor:ClientLogin)
 }
-inline PROTOBUF_NDEBUG_INLINE ClientConnect::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ClientLogin::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : name_(arena, from.name_),
         _cached_size_{0} {}
 
-ClientConnect::ClientConnect(
+ClientLogin::ClientLogin(
     ::google::protobuf::Arena* arena,
-    const ClientConnect& from)
+    const ClientLogin& from)
     : ::google::protobuf::Message(arena) {
-  ClientConnect* const _this = this;
+  ClientLogin* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:ClientConnect)
+  // @@protoc_insertion_point(copy_constructor:ClientLogin)
 }
-inline PROTOBUF_NDEBUG_INLINE ClientConnect::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ClientLogin::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : name_(arena),
         _cached_size_{0} {}
 
-inline void ClientConnect::SharedCtor(::_pb::Arena* arena) {
+inline void ClientLogin::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-ClientConnect::~ClientConnect() {
-  // @@protoc_insertion_point(destructor:ClientConnect)
+ClientLogin::~ClientLogin() {
+  // @@protoc_insertion_point(destructor:ClientLogin)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ClientConnect::SharedDtor() {
+inline void ClientLogin::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.name_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ClientConnect::Clear() {
-// @@protoc_insertion_point(message_clear_start:ClientConnect)
+PROTOBUF_NOINLINE void ClientLogin::Clear() {
+// @@protoc_insertion_point(message_clear_start:ClientLogin)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -339,7 +436,7 @@ PROTOBUF_NOINLINE void ClientConnect::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ClientConnect::_InternalParse(
+const char* ClientLogin::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -347,7 +444,7 @@ const char* ClientConnect::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 26, 2> ClientConnect::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 24, 2> ClientLogin::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -358,31 +455,31 @@ const ::_pbi::TcParseTable<0, 1, 0, 26, 2> ClientConnect::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ClientConnect_default_instance_._instance,
+    &_ClientLogin_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // string name = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ClientConnect, _impl_.name_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ClientLogin, _impl_.name_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string name = 1;
-    {PROTOBUF_FIELD_OFFSET(ClientConnect, _impl_.name_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ClientLogin, _impl_.name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\15\4\0\0\0\0\0\0"
-    "ClientConnect"
+    "\13\4\0\0\0\0\0\0"
+    "ClientLogin"
     "name"
   }},
 };
 
-::uint8_t* ClientConnect::_InternalSerialize(
+::uint8_t* ClientLogin::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:ClientConnect)
+  // @@protoc_insertion_point(serialize_to_array_start:ClientLogin)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -390,7 +487,7 @@ const ::_pbi::TcParseTable<0, 1, 0, 26, 2> ClientConnect::_table_ = {
   if (!this->_internal_name().empty()) {
     const std::string& _s = this->_internal_name();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ClientConnect.name");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ClientLogin.name");
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
@@ -399,12 +496,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 26, 2> ClientConnect::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:ClientConnect)
+  // @@protoc_insertion_point(serialize_to_array_end:ClientLogin)
   return target;
 }
 
-::size_t ClientConnect::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:ClientConnect)
+::size_t ClientLogin::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ClientLogin)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -420,18 +517,18 @@ const ::_pbi::TcParseTable<0, 1, 0, 26, 2> ClientConnect::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ClientConnect::_class_data_ = {
-    ClientConnect::MergeImpl,
+const ::google::protobuf::Message::ClassData ClientLogin::_class_data_ = {
+    ClientLogin::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ClientConnect::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ClientLogin::GetClassData() const {
   return &_class_data_;
 }
 
-void ClientConnect::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ClientConnect*>(&to_msg);
-  auto& from = static_cast<const ClientConnect&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ClientConnect)
+void ClientLogin::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ClientLogin*>(&to_msg);
+  auto& from = static_cast<const ClientLogin&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:ClientLogin)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -442,21 +539,21 @@ void ClientConnect::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ClientConnect::CopyFrom(const ClientConnect& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ClientConnect)
+void ClientLogin::CopyFrom(const ClientLogin& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ClientLogin)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ClientConnect::IsInitialized() const {
+PROTOBUF_NOINLINE bool ClientLogin::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ClientConnect::AccessCachedSize() const {
+::_pbi::CachedSize* ClientLogin::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ClientConnect::InternalSwap(ClientConnect* PROTOBUF_RESTRICT other) {
+void ClientLogin::InternalSwap(ClientLogin* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -464,7 +561,7 @@ void ClientConnect::InternalSwap(ClientConnect* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
 }
 
-::google::protobuf::Metadata ClientConnect::GetMetadata() const {
+::google::protobuf::Metadata ClientLogin::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_src_2fPackets_2eproto_getter, &descriptor_table_src_2fPackets_2eproto_once,
       file_level_metadata_src_2fPackets_2eproto[0]);
@@ -1095,18 +1192,431 @@ void ServerVerdict::InternalSwap(ServerVerdict* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class QuizFilePathsRequest::_Internal {
+ public:
+};
+
+QuizFilePathsRequest::QuizFilePathsRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:QuizFilePathsRequest)
+}
+QuizFilePathsRequest::QuizFilePathsRequest(
+    ::google::protobuf::Arena* arena,
+    const QuizFilePathsRequest& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  QuizFilePathsRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:QuizFilePathsRequest)
+}
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata QuizFilePathsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_src_2fPackets_2eproto_getter, &descriptor_table_src_2fPackets_2eproto_once,
+      file_level_metadata_src_2fPackets_2eproto[4]);
+}
+// ===================================================================
+
+class QuizFilePaths::_Internal {
+ public:
+};
+
+QuizFilePaths::QuizFilePaths(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:QuizFilePaths)
+}
+inline PROTOBUF_NDEBUG_INLINE QuizFilePaths::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : quizpaths_{visibility, arena, from.quizpaths_},
+        _cached_size_{0} {}
+
+QuizFilePaths::QuizFilePaths(
+    ::google::protobuf::Arena* arena,
+    const QuizFilePaths& from)
+    : ::google::protobuf::Message(arena) {
+  QuizFilePaths* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:QuizFilePaths)
+}
+inline PROTOBUF_NDEBUG_INLINE QuizFilePaths::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : quizpaths_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void QuizFilePaths::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+QuizFilePaths::~QuizFilePaths() {
+  // @@protoc_insertion_point(destructor:QuizFilePaths)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void QuizFilePaths::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void QuizFilePaths::Clear() {
+// @@protoc_insertion_point(message_clear_start:QuizFilePaths)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.quizpaths_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* QuizFilePaths::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 31, 2> QuizFilePaths::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_QuizFilePaths_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated string quizPaths = 1;
+    {::_pbi::TcParser::FastUR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(QuizFilePaths, _impl_.quizpaths_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated string quizPaths = 1;
+    {PROTOBUF_FIELD_OFFSET(QuizFilePaths, _impl_.quizpaths_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\15\11\0\0\0\0\0\0"
+    "QuizFilePaths"
+    "quizPaths"
+  }},
+};
+
+::uint8_t* QuizFilePaths::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:QuizFilePaths)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated string quizPaths = 1;
+  for (int i = 0, n = this->_internal_quizpaths_size(); i < n; ++i) {
+    const auto& s = this->_internal_quizpaths().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "QuizFilePaths.quizPaths");
+    target = stream->WriteString(1, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:QuizFilePaths)
+  return target;
+}
+
+::size_t QuizFilePaths::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:QuizFilePaths)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string quizPaths = 1;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_quizpaths().size());
+  for (int i = 0, n = _internal_quizpaths().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_quizpaths().Get(i));
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData QuizFilePaths::_class_data_ = {
+    QuizFilePaths::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* QuizFilePaths::GetClassData() const {
+  return &_class_data_;
+}
+
+void QuizFilePaths::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<QuizFilePaths*>(&to_msg);
+  auto& from = static_cast<const QuizFilePaths&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:QuizFilePaths)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_quizpaths()->MergeFrom(from._internal_quizpaths());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void QuizFilePaths::CopyFrom(const QuizFilePaths& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:QuizFilePaths)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool QuizFilePaths::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* QuizFilePaths::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void QuizFilePaths::InternalSwap(QuizFilePaths* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.quizpaths_.InternalSwap(&other->_impl_.quizpaths_);
+}
+
+::google::protobuf::Metadata QuizFilePaths::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_src_2fPackets_2eproto_getter, &descriptor_table_src_2fPackets_2eproto_once,
+      file_level_metadata_src_2fPackets_2eproto[5]);
+}
+// ===================================================================
+
+class QuizChangeRequest::_Internal {
+ public:
+};
+
+QuizChangeRequest::QuizChangeRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:QuizChangeRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE QuizChangeRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : quizpath_(arena, from.quizpath_),
+        _cached_size_{0} {}
+
+QuizChangeRequest::QuizChangeRequest(
+    ::google::protobuf::Arena* arena,
+    const QuizChangeRequest& from)
+    : ::google::protobuf::Message(arena) {
+  QuizChangeRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:QuizChangeRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE QuizChangeRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : quizpath_(arena),
+        _cached_size_{0} {}
+
+inline void QuizChangeRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+QuizChangeRequest::~QuizChangeRequest() {
+  // @@protoc_insertion_point(destructor:QuizChangeRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void QuizChangeRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.quizpath_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void QuizChangeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:QuizChangeRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.quizpath_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* QuizChangeRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 34, 2> QuizChangeRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_QuizChangeRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string quizPath = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(QuizChangeRequest, _impl_.quizpath_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string quizPath = 1;
+    {PROTOBUF_FIELD_OFFSET(QuizChangeRequest, _impl_.quizpath_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\21\10\0\0\0\0\0\0"
+    "QuizChangeRequest"
+    "quizPath"
+  }},
+};
+
+::uint8_t* QuizChangeRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:QuizChangeRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string quizPath = 1;
+  if (!this->_internal_quizpath().empty()) {
+    const std::string& _s = this->_internal_quizpath();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "QuizChangeRequest.quizPath");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:QuizChangeRequest)
+  return target;
+}
+
+::size_t QuizChangeRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:QuizChangeRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string quizPath = 1;
+  if (!this->_internal_quizpath().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_quizpath());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData QuizChangeRequest::_class_data_ = {
+    QuizChangeRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* QuizChangeRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void QuizChangeRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<QuizChangeRequest*>(&to_msg);
+  auto& from = static_cast<const QuizChangeRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:QuizChangeRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_quizpath().empty()) {
+    _this->_internal_set_quizpath(from._internal_quizpath());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void QuizChangeRequest::CopyFrom(const QuizChangeRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:QuizChangeRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool QuizChangeRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* QuizChangeRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void QuizChangeRequest::InternalSwap(QuizChangeRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.quizpath_, &other->_impl_.quizpath_, arena);
+}
+
+::google::protobuf::Metadata QuizChangeRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_src_2fPackets_2eproto_getter, &descriptor_table_src_2fPackets_2eproto_once,
+      file_level_metadata_src_2fPackets_2eproto[6]);
+}
+// ===================================================================
+
 class MessageEnvelope::_Internal {
  public:
   static constexpr ::int32_t kOneofCaseOffset =
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _impl_._oneof_case_);
-  static const ::ClientConnect& clientconnect(const MessageEnvelope* msg);
+  static const ::ClientLogin& clientlogin(const MessageEnvelope* msg);
   static const ::ClientAnswer& clientanswer(const MessageEnvelope* msg);
   static const ::ServerQuestion& serverquestion(const MessageEnvelope* msg);
   static const ::ServerVerdict& serververdict(const MessageEnvelope* msg);
+  static const ::QuizChangeRequest& quizchangerequest(const MessageEnvelope* msg);
+  static const ::QuizFilePathsRequest& quizfilepathsrequest(const MessageEnvelope* msg);
+  static const ::QuizFilePaths& quizfilepaths(const MessageEnvelope* msg);
 };
 
-const ::ClientConnect& MessageEnvelope::_Internal::clientconnect(const MessageEnvelope* msg) {
-  return *msg->_impl_.payload_.clientconnect_;
+const ::ClientLogin& MessageEnvelope::_Internal::clientlogin(const MessageEnvelope* msg) {
+  return *msg->_impl_.payload_.clientlogin_;
 }
 const ::ClientAnswer& MessageEnvelope::_Internal::clientanswer(const MessageEnvelope* msg) {
   return *msg->_impl_.payload_.clientanswer_;
@@ -1117,18 +1627,27 @@ const ::ServerQuestion& MessageEnvelope::_Internal::serverquestion(const Message
 const ::ServerVerdict& MessageEnvelope::_Internal::serververdict(const MessageEnvelope* msg) {
   return *msg->_impl_.payload_.serververdict_;
 }
-void MessageEnvelope::set_allocated_clientconnect(::ClientConnect* clientconnect) {
+const ::QuizChangeRequest& MessageEnvelope::_Internal::quizchangerequest(const MessageEnvelope* msg) {
+  return *msg->_impl_.payload_.quizchangerequest_;
+}
+const ::QuizFilePathsRequest& MessageEnvelope::_Internal::quizfilepathsrequest(const MessageEnvelope* msg) {
+  return *msg->_impl_.payload_.quizfilepathsrequest_;
+}
+const ::QuizFilePaths& MessageEnvelope::_Internal::quizfilepaths(const MessageEnvelope* msg) {
+  return *msg->_impl_.payload_.quizfilepaths_;
+}
+void MessageEnvelope::set_allocated_clientlogin(::ClientLogin* clientlogin) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_payload();
-  if (clientconnect) {
-    ::google::protobuf::Arena* submessage_arena = clientconnect->GetArena();
+  if (clientlogin) {
+    ::google::protobuf::Arena* submessage_arena = clientlogin->GetArena();
     if (message_arena != submessage_arena) {
-      clientconnect = ::google::protobuf::internal::GetOwnedMessage(message_arena, clientconnect, submessage_arena);
+      clientlogin = ::google::protobuf::internal::GetOwnedMessage(message_arena, clientlogin, submessage_arena);
     }
-    set_has_clientconnect();
-    _impl_.payload_.clientconnect_ = clientconnect;
+    set_has_clientlogin();
+    _impl_.payload_.clientlogin_ = clientlogin;
   }
-  // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.clientConnect)
+  // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.clientLogin)
 }
 void MessageEnvelope::set_allocated_clientanswer(::ClientAnswer* clientanswer) {
   ::google::protobuf::Arena* message_arena = GetArena();
@@ -1169,6 +1688,45 @@ void MessageEnvelope::set_allocated_serververdict(::ServerVerdict* serververdict
   }
   // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.serverVerdict)
 }
+void MessageEnvelope::set_allocated_quizchangerequest(::QuizChangeRequest* quizchangerequest) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_payload();
+  if (quizchangerequest) {
+    ::google::protobuf::Arena* submessage_arena = quizchangerequest->GetArena();
+    if (message_arena != submessage_arena) {
+      quizchangerequest = ::google::protobuf::internal::GetOwnedMessage(message_arena, quizchangerequest, submessage_arena);
+    }
+    set_has_quizchangerequest();
+    _impl_.payload_.quizchangerequest_ = quizchangerequest;
+  }
+  // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.quizChangeRequest)
+}
+void MessageEnvelope::set_allocated_quizfilepathsrequest(::QuizFilePathsRequest* quizfilepathsrequest) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_payload();
+  if (quizfilepathsrequest) {
+    ::google::protobuf::Arena* submessage_arena = quizfilepathsrequest->GetArena();
+    if (message_arena != submessage_arena) {
+      quizfilepathsrequest = ::google::protobuf::internal::GetOwnedMessage(message_arena, quizfilepathsrequest, submessage_arena);
+    }
+    set_has_quizfilepathsrequest();
+    _impl_.payload_.quizfilepathsrequest_ = quizfilepathsrequest;
+  }
+  // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.quizFilePathsRequest)
+}
+void MessageEnvelope::set_allocated_quizfilepaths(::QuizFilePaths* quizfilepaths) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_payload();
+  if (quizfilepaths) {
+    ::google::protobuf::Arena* submessage_arena = quizfilepaths->GetArena();
+    if (message_arena != submessage_arena) {
+      quizfilepaths = ::google::protobuf::internal::GetOwnedMessage(message_arena, quizfilepaths, submessage_arena);
+    }
+    set_has_quizfilepaths();
+    _impl_.payload_.quizfilepaths_ = quizfilepaths;
+  }
+  // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.quizFilePaths)
+}
 MessageEnvelope::MessageEnvelope(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
@@ -1194,8 +1752,8 @@ MessageEnvelope::MessageEnvelope(
   switch (payload_case()) {
     case PAYLOAD_NOT_SET:
       break;
-      case kClientConnect:
-        _impl_.payload_.clientconnect_ = CreateMaybeMessage<::ClientConnect>(arena, *from._impl_.payload_.clientconnect_);
+      case kClientLogin:
+        _impl_.payload_.clientlogin_ = CreateMaybeMessage<::ClientLogin>(arena, *from._impl_.payload_.clientlogin_);
         break;
       case kClientAnswer:
         _impl_.payload_.clientanswer_ = CreateMaybeMessage<::ClientAnswer>(arena, *from._impl_.payload_.clientanswer_);
@@ -1205,6 +1763,15 @@ MessageEnvelope::MessageEnvelope(
         break;
       case kServerVerdict:
         _impl_.payload_.serververdict_ = CreateMaybeMessage<::ServerVerdict>(arena, *from._impl_.payload_.serververdict_);
+        break;
+      case kQuizChangeRequest:
+        _impl_.payload_.quizchangerequest_ = CreateMaybeMessage<::QuizChangeRequest>(arena, *from._impl_.payload_.quizchangerequest_);
+        break;
+      case kQuizFilePathsRequest:
+        _impl_.payload_.quizfilepathsrequest_ = CreateMaybeMessage<::QuizFilePathsRequest>(arena, *from._impl_.payload_.quizfilepathsrequest_);
+        break;
+      case kQuizFilePaths:
+        _impl_.payload_.quizfilepaths_ = CreateMaybeMessage<::QuizFilePaths>(arena, *from._impl_.payload_.quizfilepaths_);
         break;
   }
 
@@ -1238,9 +1805,9 @@ void MessageEnvelope::clear_payload() {
 // @@protoc_insertion_point(one_of_clear_start:MessageEnvelope)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   switch (payload_case()) {
-    case kClientConnect: {
+    case kClientLogin: {
       if (GetArena() == nullptr) {
-        delete _impl_.payload_.clientconnect_;
+        delete _impl_.payload_.clientlogin_;
       }
       break;
     }
@@ -1259,6 +1826,24 @@ void MessageEnvelope::clear_payload() {
     case kServerVerdict: {
       if (GetArena() == nullptr) {
         delete _impl_.payload_.serververdict_;
+      }
+      break;
+    }
+    case kQuizChangeRequest: {
+      if (GetArena() == nullptr) {
+        delete _impl_.payload_.quizchangerequest_;
+      }
+      break;
+    }
+    case kQuizFilePathsRequest: {
+      if (GetArena() == nullptr) {
+        delete _impl_.payload_.quizfilepathsrequest_;
+      }
+      break;
+    }
+    case kQuizFilePaths: {
+      if (GetArena() == nullptr) {
+        delete _impl_.payload_.quizfilepaths_;
       }
       break;
     }
@@ -1290,16 +1875,16 @@ const char* MessageEnvelope::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 5, 4, 0, 2> MessageEnvelope::_table_ = {
+const ::_pbi::TcParseTable<0, 8, 7, 0, 2> MessageEnvelope::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 0,  // max_field_number, fast_idx_mask
+    8, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
-    4,  // num_aux_entries
+    8,  // num_field_entries
+    7,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_MessageEnvelope_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -1313,8 +1898,8 @@ const ::_pbi::TcParseTable<0, 5, 4, 0, 2> MessageEnvelope::_table_ = {
     // .MessageEnvelope.MessageType type = 1;
     {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // .ClientConnect clientConnect = 2;
-    {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.clientconnect_), _Internal::kOneofCaseOffset + 0, 0,
+    // .ClientLogin clientLogin = 2;
+    {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.clientlogin_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .ClientAnswer clientAnswer = 3;
     {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.clientanswer_), _Internal::kOneofCaseOffset + 0, 1,
@@ -1325,11 +1910,23 @@ const ::_pbi::TcParseTable<0, 5, 4, 0, 2> MessageEnvelope::_table_ = {
     // .ServerVerdict serverVerdict = 5;
     {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.serververdict_), _Internal::kOneofCaseOffset + 0, 3,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .QuizChangeRequest quizChangeRequest = 6;
+    {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.quizchangerequest_), _Internal::kOneofCaseOffset + 0, 4,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .QuizFilePathsRequest quizFilePathsRequest = 7;
+    {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.quizfilepathsrequest_), _Internal::kOneofCaseOffset + 0, 5,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .QuizFilePaths quizFilePaths = 8;
+    {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.quizfilepaths_), _Internal::kOneofCaseOffset + 0, 6,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::ClientConnect>()},
+    {::_pbi::TcParser::GetTable<::ClientLogin>()},
     {::_pbi::TcParser::GetTable<::ClientAnswer>()},
     {::_pbi::TcParser::GetTable<::ServerQuestion>()},
     {::_pbi::TcParser::GetTable<::ServerVerdict>()},
+    {::_pbi::TcParser::GetTable<::QuizChangeRequest>()},
+    {::_pbi::FieldAuxDefaultMessage{}, &::_QuizFilePathsRequest_default_instance_},
+    {::_pbi::TcParser::GetTable<::QuizFilePaths>()},
   }}, {{
   }},
 };
@@ -1349,10 +1946,10 @@ const ::_pbi::TcParseTable<0, 5, 4, 0, 2> MessageEnvelope::_table_ = {
   }
 
   switch (payload_case()) {
-    case kClientConnect: {
+    case kClientLogin: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          2, _Internal::clientconnect(this),
-          _Internal::clientconnect(this).GetCachedSize(), target, stream);
+          2, _Internal::clientlogin(this),
+          _Internal::clientlogin(this).GetCachedSize(), target, stream);
       break;
     }
     case kClientAnswer: {
@@ -1371,6 +1968,24 @@ const ::_pbi::TcParseTable<0, 5, 4, 0, 2> MessageEnvelope::_table_ = {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
           5, _Internal::serververdict(this),
           _Internal::serververdict(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kQuizChangeRequest: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          6, _Internal::quizchangerequest(this),
+          _Internal::quizchangerequest(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kQuizFilePathsRequest: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          7, _Internal::quizfilepathsrequest(this),
+          _Internal::quizfilepathsrequest(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kQuizFilePaths: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          8, _Internal::quizfilepaths(this),
+          _Internal::quizfilepaths(this).GetCachedSize(), target, stream);
       break;
     }
     default:
@@ -1400,10 +2015,10 @@ const ::_pbi::TcParseTable<0, 5, 4, 0, 2> MessageEnvelope::_table_ = {
   }
 
   switch (payload_case()) {
-    // .ClientConnect clientConnect = 2;
-    case kClientConnect: {
+    // .ClientLogin clientLogin = 2;
+    case kClientLogin: {
       total_size +=
-          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.clientconnect_);
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.clientlogin_);
       break;
     }
     // .ClientAnswer clientAnswer = 3;
@@ -1422,6 +2037,24 @@ const ::_pbi::TcParseTable<0, 5, 4, 0, 2> MessageEnvelope::_table_ = {
     case kServerVerdict: {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.serververdict_);
+      break;
+    }
+    // .QuizChangeRequest quizChangeRequest = 6;
+    case kQuizChangeRequest: {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.quizchangerequest_);
+      break;
+    }
+    // .QuizFilePathsRequest quizFilePathsRequest = 7;
+    case kQuizFilePathsRequest: {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.quizfilepathsrequest_);
+      break;
+    }
+    // .QuizFilePaths quizFilePaths = 8;
+    case kQuizFilePaths: {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.quizfilepaths_);
       break;
     }
     case PAYLOAD_NOT_SET: {
@@ -1451,9 +2084,9 @@ void MessageEnvelope::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
     _this->_internal_set_type(from._internal_type());
   }
   switch (from.payload_case()) {
-    case kClientConnect: {
-      _this->_internal_mutable_clientconnect()->::ClientConnect::MergeFrom(
-          from._internal_clientconnect());
+    case kClientLogin: {
+      _this->_internal_mutable_clientlogin()->::ClientLogin::MergeFrom(
+          from._internal_clientlogin());
       break;
     }
     case kClientAnswer: {
@@ -1469,6 +2102,21 @@ void MessageEnvelope::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
     case kServerVerdict: {
       _this->_internal_mutable_serververdict()->::ServerVerdict::MergeFrom(
           from._internal_serververdict());
+      break;
+    }
+    case kQuizChangeRequest: {
+      _this->_internal_mutable_quizchangerequest()->::QuizChangeRequest::MergeFrom(
+          from._internal_quizchangerequest());
+      break;
+    }
+    case kQuizFilePathsRequest: {
+      _this->_internal_mutable_quizfilepathsrequest()->::QuizFilePathsRequest::MergeFrom(
+          from._internal_quizfilepathsrequest());
+      break;
+    }
+    case kQuizFilePaths: {
+      _this->_internal_mutable_quizfilepaths()->::QuizFilePaths::MergeFrom(
+          from._internal_quizfilepaths());
       break;
     }
     case PAYLOAD_NOT_SET: {
@@ -1503,7 +2151,7 @@ void MessageEnvelope::InternalSwap(MessageEnvelope* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata MessageEnvelope::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_src_2fPackets_2eproto_getter, &descriptor_table_src_2fPackets_2eproto_once,
-      file_level_metadata_src_2fPackets_2eproto[4]);
+      file_level_metadata_src_2fPackets_2eproto[7]);
 }
 // @@protoc_insertion_point(namespace_scope)
 namespace google {

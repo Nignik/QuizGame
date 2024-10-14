@@ -38,14 +38,6 @@ void Server::Init()
 	}
 
 	std::cout << "Server listening on port " << serverAddress.m_port << "\n";
-
-	std::vector<QuizCard> cards = {
-		{"a", "b"},
-		{"ab", "cd"}
-	};
-	auto shuffle = std::make_shared<RandomShuffle>();
-
-	s_instance->m_quiz = std::make_unique<Quiz>(cards, shuffle);
 }
 
 void Server::Shutdown()
@@ -68,6 +60,19 @@ void Server::Shutdown()
 	s_instance = nullptr;
 }
 
+void Server::LoadQuiz(fs::path filePath)
+{
+	std::ifstream file = getCsvFile(filePath);
+	auto shuffle = std::make_shared<RandomShuffle>();
+	m_quiz = std::make_unique<Quiz>(extractCards(file), shuffle);
+	for (auto& [conn, card] : m_players)
+	{
+		card = m_quiz->GetCurrentCard();
+		SendQuestion(conn);
+	}
+	m_quiz->NextCard();
+}
+
 void Server::Run()
 {
 	while (m_isRunning)
@@ -80,7 +85,7 @@ void Server::Run()
 	}
 }
 
-void Server::MessageQuestion(HSteamNetConnection& connection)
+void Server::SendQuestion(const HSteamNetConnection& connection)
 {
 	MessageEnvelope envelope;
 	envelope.set_type(MessageEnvelope::SERVER_QUESTION);
@@ -95,7 +100,7 @@ void Server::MessageQuestion(HSteamNetConnection& connection)
 		connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
 }
 
-void Server::MessageVerdict(HSteamNetConnection& connection, bool correct)
+void Server::SendVerdict(HSteamNetConnection& connection, bool correct)
 {
 	MessageEnvelope envelope;
 	envelope.set_type(MessageEnvelope::SERVER_VERDICT);
@@ -123,7 +128,7 @@ void Server::PollMessages()
 		envelope.ParseFromString(receivedData);
 		switch (envelope.type())
 		{
-			case MessageEnvelope::CLIENT_CONNECT:		OnClientConnect(envelope.clientconnect(), incomingMsg->m_conn);			break;
+			case MessageEnvelope::CLIENT_LOGIN:			OnPlayerLogin(envelope.clientlogin(), incomingMsg->m_conn);				break;
 			case MessageEnvelope::CLIENT_ANSWER:		OnClientAnswer(envelope.clientanswer(), incomingMsg->m_conn);			break;
 
 			default:									std::cout << "Reveived invalid packet" << std::endl;					break;
@@ -133,12 +138,26 @@ void Server::PollMessages()
 	}
 }
 
-void Server::OnClientConnect(const ClientConnect& clientConnect, HSteamNetConnection& connection)
+void Server::OnPlayerConnect(HSteamNetConnection& connection)
 {
-	std::cout << "New connection: " << clientConnect.name() << " from: " << connection << "\n\n";
+	// Accept the connection
+	SteamNetworkingSockets()->AcceptConnection(connection);
+
+	// Assign the connection to the poll group
+	SteamNetworkingSockets()->SetConnectionPollGroup(connection, m_pollGroup);
+}
+
+void Server::OnPlayerDisconnect(HSteamNetConnection& connection)
+{
+	SteamNetworkingSockets()->CloseConnection(connection, 0, nullptr, false);
+}
+
+void Server::OnPlayerLogin(const ClientLogin& clientLogin, HSteamNetConnection& connection)
+{
+	std::cout << "New connection: " << clientLogin.name() << " from: " << connection << "\n\n";
 
 	m_players[connection] = m_quiz->GetCurrentCard();
-	MessageQuestion(connection);
+	SendQuestion(connection);
 
 	m_quiz->NextCard();
 }
@@ -147,10 +166,10 @@ void Server::OnClientAnswer(const ClientAnswer& clientAnswer, HSteamNetConnectio
 {
 	std::cout << "Client answer: " << clientAnswer.answer() << " from: " << clientAnswer.name() << '(' << connection << ")\n\n";
 	
-	MessageVerdict(connection, clientAnswer.answer() == m_players[connection].answer ? true : false);
+	SendVerdict(connection, clientAnswer.answer() == m_players[connection].answer ? true : false);
 
 	m_players[connection] = m_quiz->GetCurrentCard();
-	MessageQuestion(connection);
+	SendQuestion(connection);
 
 	m_quiz->NextCard();
 }
@@ -162,20 +181,14 @@ void Server::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCa
 		// This is a new connection
 		if (pInfo->m_info.m_eState == k_ESteamNetworkingConnectionState_Connecting)
 		{
-			// Accept the connection
-			SteamNetworkingSockets()->AcceptConnection(pInfo->m_hConn);
-
-			// Assign the connection to the poll group
-			SteamNetworkingSockets()->SetConnectionPollGroup(pInfo->m_hConn, m_pollGroup);
+			s_instance->OnPlayerConnect(pInfo->m_hConn);
 		}
 	}
 
 	if (pInfo->m_info.m_eState == k_ESteamNetworkingConnectionState_ClosedByPeer ||
 		pInfo->m_info.m_eState == k_ESteamNetworkingConnectionState_ProblemDetectedLocally)
 	{
-		// Clean up the connection
-		SteamNetworkingSockets()->CloseConnection(pInfo->m_hConn, 0, nullptr, false);
-		std::cout << "Connection closed.\n";
+		s_instance->OnPlayerDisconnect(pInfo->m_hConn);
 	}
 }
 

@@ -26,6 +26,7 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
+#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -59,12 +60,21 @@ extern const ::google::protobuf::internal::DescriptorTable
 class ClientAnswer;
 struct ClientAnswerDefaultTypeInternal;
 extern ClientAnswerDefaultTypeInternal _ClientAnswer_default_instance_;
-class ClientConnect;
-struct ClientConnectDefaultTypeInternal;
-extern ClientConnectDefaultTypeInternal _ClientConnect_default_instance_;
+class ClientLogin;
+struct ClientLoginDefaultTypeInternal;
+extern ClientLoginDefaultTypeInternal _ClientLogin_default_instance_;
 class MessageEnvelope;
 struct MessageEnvelopeDefaultTypeInternal;
 extern MessageEnvelopeDefaultTypeInternal _MessageEnvelope_default_instance_;
+class QuizChangeRequest;
+struct QuizChangeRequestDefaultTypeInternal;
+extern QuizChangeRequestDefaultTypeInternal _QuizChangeRequest_default_instance_;
+class QuizFilePaths;
+struct QuizFilePathsDefaultTypeInternal;
+extern QuizFilePathsDefaultTypeInternal _QuizFilePaths_default_instance_;
+class QuizFilePathsRequest;
+struct QuizFilePathsRequestDefaultTypeInternal;
+extern QuizFilePathsRequestDefaultTypeInternal _QuizFilePathsRequest_default_instance_;
 class ServerQuestion;
 struct ServerQuestionDefaultTypeInternal;
 extern ServerQuestionDefaultTypeInternal _ServerQuestion_default_instance_;
@@ -77,10 +87,13 @@ namespace protobuf {
 }  // namespace google
 
 enum MessageEnvelope_MessageType : int {
-  MessageEnvelope_MessageType_CLIENT_CONNECT = 0,
+  MessageEnvelope_MessageType_CLIENT_LOGIN = 0,
   MessageEnvelope_MessageType_CLIENT_ANSWER = 1,
   MessageEnvelope_MessageType_SERVER_QUESTION = 2,
   MessageEnvelope_MessageType_SERVER_VERDICT = 3,
+  MessageEnvelope_MessageType_QUIZ_CHANGE_REQUEST = 4,
+  MessageEnvelope_MessageType_QUIZ_FILE_PATHS_REQUEST = 5,
+  MessageEnvelope_MessageType_QUIZ_FILE_PATHS = 6,
   MessageEnvelope_MessageType_MessageEnvelope_MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   MessageEnvelope_MessageType_MessageEnvelope_MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -90,8 +103,8 @@ enum MessageEnvelope_MessageType : int {
 bool MessageEnvelope_MessageType_IsValid(int value);
 extern const uint32_t MessageEnvelope_MessageType_internal_data_[];
 constexpr MessageEnvelope_MessageType MessageEnvelope_MessageType_MessageType_MIN = static_cast<MessageEnvelope_MessageType>(0);
-constexpr MessageEnvelope_MessageType MessageEnvelope_MessageType_MessageType_MAX = static_cast<MessageEnvelope_MessageType>(3);
-constexpr int MessageEnvelope_MessageType_MessageType_ARRAYSIZE = 3 + 1;
+constexpr MessageEnvelope_MessageType MessageEnvelope_MessageType_MessageType_MAX = static_cast<MessageEnvelope_MessageType>(6);
+constexpr int MessageEnvelope_MessageType_MessageType_ARRAYSIZE = 6 + 1;
 const ::google::protobuf::EnumDescriptor*
 MessageEnvelope_MessageType_descriptor();
 template <typename T>
@@ -104,7 +117,7 @@ const std::string& MessageEnvelope_MessageType_Name(T value) {
 template <>
 inline const std::string& MessageEnvelope_MessageType_Name(MessageEnvelope_MessageType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<MessageEnvelope_MessageType_descriptor,
-                                                 0, 3>(
+                                                 0, 6>(
       static_cast<int>(value));
 }
 inline bool MessageEnvelope_MessageType_Parse(absl::string_view name, MessageEnvelope_MessageType* value) {
@@ -491,26 +504,25 @@ class ServerQuestion final :
   friend struct ::TableStruct_src_2fPackets_2eproto;
 };// -------------------------------------------------------------------
 
-class ClientConnect final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ClientConnect) */ {
+class QuizFilePathsRequest final :
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:QuizFilePathsRequest) */ {
  public:
-  inline ClientConnect() : ClientConnect(nullptr) {}
-  ~ClientConnect() override;
+  inline QuizFilePathsRequest() : QuizFilePathsRequest(nullptr) {}
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ClientConnect(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR QuizFilePathsRequest(::google::protobuf::internal::ConstantInitialized);
 
-  inline ClientConnect(const ClientConnect& from)
-      : ClientConnect(nullptr, from) {}
-  ClientConnect(ClientConnect&& from) noexcept
-    : ClientConnect() {
+  inline QuizFilePathsRequest(const QuizFilePathsRequest& from)
+      : QuizFilePathsRequest(nullptr, from) {}
+  QuizFilePathsRequest(QuizFilePathsRequest&& from) noexcept
+    : QuizFilePathsRequest() {
     *this = ::std::move(from);
   }
 
-  inline ClientConnect& operator=(const ClientConnect& from) {
+  inline QuizFilePathsRequest& operator=(const QuizFilePathsRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ClientConnect& operator=(ClientConnect&& from) noexcept {
+  inline QuizFilePathsRequest& operator=(QuizFilePathsRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -542,20 +554,20 @@ class ClientConnect final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ClientConnect& default_instance() {
+  static const QuizFilePathsRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ClientConnect* internal_default_instance() {
-    return reinterpret_cast<const ClientConnect*>(
-               &_ClientConnect_default_instance_);
+  static inline const QuizFilePathsRequest* internal_default_instance() {
+    return reinterpret_cast<const QuizFilePathsRequest*>(
+               &_QuizFilePathsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    4;
 
-  friend void swap(ClientConnect& a, ClientConnect& b) {
+  friend void swap(QuizFilePathsRequest& a, QuizFilePathsRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(ClientConnect* other) {
+  inline void Swap(QuizFilePathsRequest* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -568,7 +580,7 @@ class ClientConnect final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ClientConnect* other) {
+  void UnsafeArenaSwap(QuizFilePathsRequest* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -576,14 +588,151 @@ class ClientConnect final :
 
   // implements Message ----------------------------------------------
 
-  ClientConnect* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ClientConnect>(arena);
+  QuizFilePathsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<QuizFilePathsRequest>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const QuizFilePathsRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const QuizFilePathsRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "QuizFilePathsRequest";
+  }
+  protected:
+  explicit QuizFilePathsRequest(::google::protobuf::Arena* arena);
+  QuizFilePathsRequest(::google::protobuf::Arena* arena, const QuizFilePathsRequest& from);
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:QuizFilePathsRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_src_2fPackets_2eproto;
+};// -------------------------------------------------------------------
+
+class QuizFilePaths final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:QuizFilePaths) */ {
+ public:
+  inline QuizFilePaths() : QuizFilePaths(nullptr) {}
+  ~QuizFilePaths() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR QuizFilePaths(::google::protobuf::internal::ConstantInitialized);
+
+  inline QuizFilePaths(const QuizFilePaths& from)
+      : QuizFilePaths(nullptr, from) {}
+  QuizFilePaths(QuizFilePaths&& from) noexcept
+    : QuizFilePaths() {
+    *this = ::std::move(from);
+  }
+
+  inline QuizFilePaths& operator=(const QuizFilePaths& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline QuizFilePaths& operator=(QuizFilePaths&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const QuizFilePaths& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const QuizFilePaths* internal_default_instance() {
+    return reinterpret_cast<const QuizFilePaths*>(
+               &_QuizFilePaths_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(QuizFilePaths& a, QuizFilePaths& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(QuizFilePaths* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(QuizFilePaths* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  QuizFilePaths* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<QuizFilePaths>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ClientConnect& from);
+  void CopyFrom(const QuizFilePaths& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ClientConnect& from) {
-    ClientConnect::MergeImpl(*this, from);
+  void MergeFrom( const QuizFilePaths& from) {
+    QuizFilePaths::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -601,16 +750,390 @@ class ClientConnect final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ClientConnect* other);
+  void InternalSwap(QuizFilePaths* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "ClientConnect";
+    return "QuizFilePaths";
   }
   protected:
-  explicit ClientConnect(::google::protobuf::Arena* arena);
-  ClientConnect(::google::protobuf::Arena* arena, const ClientConnect& from);
+  explicit QuizFilePaths(::google::protobuf::Arena* arena);
+  QuizFilePaths(::google::protobuf::Arena* arena, const QuizFilePaths& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kQuizPathsFieldNumber = 1,
+  };
+  // repeated string quizPaths = 1;
+  int quizpaths_size() const;
+  private:
+  int _internal_quizpaths_size() const;
+
+  public:
+  void clear_quizpaths() ;
+  const std::string& quizpaths(int index) const;
+  std::string* mutable_quizpaths(int index);
+  void set_quizpaths(int index, const std::string& value);
+  void set_quizpaths(int index, std::string&& value);
+  void set_quizpaths(int index, const char* value);
+  void set_quizpaths(int index, const char* value, std::size_t size);
+  void set_quizpaths(int index, absl::string_view value);
+  std::string* add_quizpaths();
+  void add_quizpaths(const std::string& value);
+  void add_quizpaths(std::string&& value);
+  void add_quizpaths(const char* value);
+  void add_quizpaths(const char* value, std::size_t size);
+  void add_quizpaths(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& quizpaths() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_quizpaths();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_quizpaths() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_quizpaths();
+
+  public:
+  // @@protoc_insertion_point(class_scope:QuizFilePaths)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      31, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField<std::string> quizpaths_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_src_2fPackets_2eproto;
+};// -------------------------------------------------------------------
+
+class QuizChangeRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:QuizChangeRequest) */ {
+ public:
+  inline QuizChangeRequest() : QuizChangeRequest(nullptr) {}
+  ~QuizChangeRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR QuizChangeRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline QuizChangeRequest(const QuizChangeRequest& from)
+      : QuizChangeRequest(nullptr, from) {}
+  QuizChangeRequest(QuizChangeRequest&& from) noexcept
+    : QuizChangeRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline QuizChangeRequest& operator=(const QuizChangeRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline QuizChangeRequest& operator=(QuizChangeRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const QuizChangeRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const QuizChangeRequest* internal_default_instance() {
+    return reinterpret_cast<const QuizChangeRequest*>(
+               &_QuizChangeRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(QuizChangeRequest& a, QuizChangeRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(QuizChangeRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(QuizChangeRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  QuizChangeRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<QuizChangeRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const QuizChangeRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const QuizChangeRequest& from) {
+    QuizChangeRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(QuizChangeRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "QuizChangeRequest";
+  }
+  protected:
+  explicit QuizChangeRequest(::google::protobuf::Arena* arena);
+  QuizChangeRequest(::google::protobuf::Arena* arena, const QuizChangeRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kQuizPathFieldNumber = 1,
+  };
+  // string quizPath = 1;
+  void clear_quizpath() ;
+  const std::string& quizpath() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_quizpath(Arg_&& arg, Args_... args);
+  std::string* mutable_quizpath();
+  PROTOBUF_NODISCARD std::string* release_quizpath();
+  void set_allocated_quizpath(std::string* value);
+
+  private:
+  const std::string& _internal_quizpath() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_quizpath(
+      const std::string& value);
+  std::string* _internal_mutable_quizpath();
+
+  public:
+  // @@protoc_insertion_point(class_scope:QuizChangeRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      34, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr quizpath_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_src_2fPackets_2eproto;
+};// -------------------------------------------------------------------
+
+class ClientLogin final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ClientLogin) */ {
+ public:
+  inline ClientLogin() : ClientLogin(nullptr) {}
+  ~ClientLogin() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ClientLogin(::google::protobuf::internal::ConstantInitialized);
+
+  inline ClientLogin(const ClientLogin& from)
+      : ClientLogin(nullptr, from) {}
+  ClientLogin(ClientLogin&& from) noexcept
+    : ClientLogin() {
+    *this = ::std::move(from);
+  }
+
+  inline ClientLogin& operator=(const ClientLogin& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ClientLogin& operator=(ClientLogin&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ClientLogin& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ClientLogin* internal_default_instance() {
+    return reinterpret_cast<const ClientLogin*>(
+               &_ClientLogin_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(ClientLogin& a, ClientLogin& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ClientLogin* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ClientLogin* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ClientLogin* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ClientLogin>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ClientLogin& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ClientLogin& from) {
+    ClientLogin::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ClientLogin* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "ClientLogin";
+  }
+  protected:
+  explicit ClientLogin(::google::protobuf::Arena* arena);
+  ClientLogin(::google::protobuf::Arena* arena, const ClientLogin& from);
   public:
 
   static const ClassData _class_data_;
@@ -641,14 +1164,14 @@ class ClientConnect final :
   std::string* _internal_mutable_name();
 
   public:
-  // @@protoc_insertion_point(class_scope:ClientConnect)
+  // @@protoc_insertion_point(class_scope:ClientLogin)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      26, 2>
+      24, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -926,10 +1449,13 @@ class MessageEnvelope final :
     return *internal_default_instance();
   }
   enum PayloadCase {
-    kClientConnect = 2,
+    kClientLogin = 2,
     kClientAnswer = 3,
     kServerQuestion = 4,
     kServerVerdict = 5,
+    kQuizChangeRequest = 6,
+    kQuizFilePathsRequest = 7,
+    kQuizFilePaths = 8,
     PAYLOAD_NOT_SET = 0,
   };
 
@@ -938,7 +1464,7 @@ class MessageEnvelope final :
                &_MessageEnvelope_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    7;
 
   friend void swap(MessageEnvelope& a, MessageEnvelope& b) {
     a.Swap(&b);
@@ -1009,10 +1535,13 @@ class MessageEnvelope final :
   // nested types ----------------------------------------------------
 
   using MessageType = MessageEnvelope_MessageType;
-  static constexpr MessageType CLIENT_CONNECT = MessageEnvelope_MessageType_CLIENT_CONNECT;
+  static constexpr MessageType CLIENT_LOGIN = MessageEnvelope_MessageType_CLIENT_LOGIN;
   static constexpr MessageType CLIENT_ANSWER = MessageEnvelope_MessageType_CLIENT_ANSWER;
   static constexpr MessageType SERVER_QUESTION = MessageEnvelope_MessageType_SERVER_QUESTION;
   static constexpr MessageType SERVER_VERDICT = MessageEnvelope_MessageType_SERVER_VERDICT;
+  static constexpr MessageType QUIZ_CHANGE_REQUEST = MessageEnvelope_MessageType_QUIZ_CHANGE_REQUEST;
+  static constexpr MessageType QUIZ_FILE_PATHS_REQUEST = MessageEnvelope_MessageType_QUIZ_FILE_PATHS_REQUEST;
+  static constexpr MessageType QUIZ_FILE_PATHS = MessageEnvelope_MessageType_QUIZ_FILE_PATHS;
   static inline bool MessageType_IsValid(int value) {
     return MessageEnvelope_MessageType_IsValid(value);
   }
@@ -1034,10 +1563,13 @@ class MessageEnvelope final :
 
   enum : int {
     kTypeFieldNumber = 1,
-    kClientConnectFieldNumber = 2,
+    kClientLoginFieldNumber = 2,
     kClientAnswerFieldNumber = 3,
     kServerQuestionFieldNumber = 4,
     kServerVerdictFieldNumber = 5,
+    kQuizChangeRequestFieldNumber = 6,
+    kQuizFilePathsRequestFieldNumber = 7,
+    kQuizFilePathsFieldNumber = 8,
   };
   // .MessageEnvelope.MessageType type = 1;
   void clear_type() ;
@@ -1049,23 +1581,23 @@ class MessageEnvelope final :
   void _internal_set_type(::MessageEnvelope_MessageType value);
 
   public:
-  // .ClientConnect clientConnect = 2;
-  bool has_clientconnect() const;
+  // .ClientLogin clientLogin = 2;
+  bool has_clientlogin() const;
   private:
-  bool _internal_has_clientconnect() const;
+  bool _internal_has_clientlogin() const;
 
   public:
-  void clear_clientconnect() ;
-  const ::ClientConnect& clientconnect() const;
-  PROTOBUF_NODISCARD ::ClientConnect* release_clientconnect();
-  ::ClientConnect* mutable_clientconnect();
-  void set_allocated_clientconnect(::ClientConnect* value);
-  void unsafe_arena_set_allocated_clientconnect(::ClientConnect* value);
-  ::ClientConnect* unsafe_arena_release_clientconnect();
+  void clear_clientlogin() ;
+  const ::ClientLogin& clientlogin() const;
+  PROTOBUF_NODISCARD ::ClientLogin* release_clientlogin();
+  ::ClientLogin* mutable_clientlogin();
+  void set_allocated_clientlogin(::ClientLogin* value);
+  void unsafe_arena_set_allocated_clientlogin(::ClientLogin* value);
+  ::ClientLogin* unsafe_arena_release_clientlogin();
 
   private:
-  const ::ClientConnect& _internal_clientconnect() const;
-  ::ClientConnect* _internal_mutable_clientconnect();
+  const ::ClientLogin& _internal_clientlogin() const;
+  ::ClientLogin* _internal_mutable_clientlogin();
 
   public:
   // .ClientAnswer clientAnswer = 3;
@@ -1125,22 +1657,82 @@ class MessageEnvelope final :
   ::ServerVerdict* _internal_mutable_serververdict();
 
   public:
+  // .QuizChangeRequest quizChangeRequest = 6;
+  bool has_quizchangerequest() const;
+  private:
+  bool _internal_has_quizchangerequest() const;
+
+  public:
+  void clear_quizchangerequest() ;
+  const ::QuizChangeRequest& quizchangerequest() const;
+  PROTOBUF_NODISCARD ::QuizChangeRequest* release_quizchangerequest();
+  ::QuizChangeRequest* mutable_quizchangerequest();
+  void set_allocated_quizchangerequest(::QuizChangeRequest* value);
+  void unsafe_arena_set_allocated_quizchangerequest(::QuizChangeRequest* value);
+  ::QuizChangeRequest* unsafe_arena_release_quizchangerequest();
+
+  private:
+  const ::QuizChangeRequest& _internal_quizchangerequest() const;
+  ::QuizChangeRequest* _internal_mutable_quizchangerequest();
+
+  public:
+  // .QuizFilePathsRequest quizFilePathsRequest = 7;
+  bool has_quizfilepathsrequest() const;
+  private:
+  bool _internal_has_quizfilepathsrequest() const;
+
+  public:
+  void clear_quizfilepathsrequest() ;
+  const ::QuizFilePathsRequest& quizfilepathsrequest() const;
+  PROTOBUF_NODISCARD ::QuizFilePathsRequest* release_quizfilepathsrequest();
+  ::QuizFilePathsRequest* mutable_quizfilepathsrequest();
+  void set_allocated_quizfilepathsrequest(::QuizFilePathsRequest* value);
+  void unsafe_arena_set_allocated_quizfilepathsrequest(::QuizFilePathsRequest* value);
+  ::QuizFilePathsRequest* unsafe_arena_release_quizfilepathsrequest();
+
+  private:
+  const ::QuizFilePathsRequest& _internal_quizfilepathsrequest() const;
+  ::QuizFilePathsRequest* _internal_mutable_quizfilepathsrequest();
+
+  public:
+  // .QuizFilePaths quizFilePaths = 8;
+  bool has_quizfilepaths() const;
+  private:
+  bool _internal_has_quizfilepaths() const;
+
+  public:
+  void clear_quizfilepaths() ;
+  const ::QuizFilePaths& quizfilepaths() const;
+  PROTOBUF_NODISCARD ::QuizFilePaths* release_quizfilepaths();
+  ::QuizFilePaths* mutable_quizfilepaths();
+  void set_allocated_quizfilepaths(::QuizFilePaths* value);
+  void unsafe_arena_set_allocated_quizfilepaths(::QuizFilePaths* value);
+  ::QuizFilePaths* unsafe_arena_release_quizfilepaths();
+
+  private:
+  const ::QuizFilePaths& _internal_quizfilepaths() const;
+  ::QuizFilePaths* _internal_mutable_quizfilepaths();
+
+  public:
   void clear_payload();
   PayloadCase payload_case() const;
   // @@protoc_insertion_point(class_scope:MessageEnvelope)
  private:
   class _Internal;
-  void set_has_clientconnect();
+  void set_has_clientlogin();
   void set_has_clientanswer();
   void set_has_serverquestion();
   void set_has_serververdict();
+  void set_has_quizchangerequest();
+  void set_has_quizfilepathsrequest();
+  void set_has_quizfilepaths();
 
   inline bool has_payload() const;
   inline void clear_has_payload();
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 5, 4,
+      0, 8, 7,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1161,10 +1753,13 @@ class MessageEnvelope final :
     union PayloadUnion {
       constexpr PayloadUnion() : _constinit_{} {}
         ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::ClientConnect* clientconnect_;
+      ::ClientLogin* clientlogin_;
       ::ClientAnswer* clientanswer_;
       ::ServerQuestion* serverquestion_;
       ::ServerVerdict* serververdict_;
+      ::QuizChangeRequest* quizchangerequest_;
+      ::QuizFilePathsRequest* quizfilepathsrequest_;
+      ::QuizFilePaths* quizfilepaths_;
     } payload_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
@@ -1189,51 +1784,51 @@ class MessageEnvelope final :
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// ClientConnect
+// ClientLogin
 
 // string name = 1;
-inline void ClientConnect::clear_name() {
+inline void ClientLogin::clear_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.name_.ClearToEmpty();
 }
-inline const std::string& ClientConnect::name() const
+inline const std::string& ClientLogin::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:ClientConnect.name)
+  // @@protoc_insertion_point(field_get:ClientLogin.name)
   return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ClientConnect::set_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ClientLogin::set_name(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:ClientConnect.name)
+  // @@protoc_insertion_point(field_set:ClientLogin.name)
 }
-inline std::string* ClientConnect::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ClientLogin::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:ClientConnect.name)
+  // @@protoc_insertion_point(field_mutable:ClientLogin.name)
   return _s;
 }
-inline const std::string& ClientConnect::_internal_name() const {
+inline const std::string& ClientLogin::_internal_name() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.name_.Get();
 }
-inline void ClientConnect::_internal_set_name(const std::string& value) {
+inline void ClientLogin::_internal_set_name(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.name_.Set(value, GetArena());
 }
-inline std::string* ClientConnect::_internal_mutable_name() {
+inline std::string* ClientLogin::_internal_mutable_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.name_.Mutable( GetArena());
 }
-inline std::string* ClientConnect::release_name() {
+inline std::string* ClientLogin::release_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:ClientConnect.name)
+  // @@protoc_insertion_point(field_release:ClientLogin.name)
   return _impl_.name_.Release();
 }
-inline void ClientConnect::set_allocated_name(std::string* value) {
+inline void ClientLogin::set_allocated_name(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.name_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1241,7 +1836,7 @@ inline void ClientConnect::set_allocated_name(std::string* value) {
           _impl_.name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:ClientConnect.name)
+  // @@protoc_insertion_point(field_set_allocated:ClientLogin.name)
 }
 
 // -------------------------------------------------------------------
@@ -1493,6 +2088,172 @@ inline void ServerVerdict::_internal_set_correct(bool value) {
 
 // -------------------------------------------------------------------
 
+// QuizFilePathsRequest
+
+// -------------------------------------------------------------------
+
+// QuizFilePaths
+
+// repeated string quizPaths = 1;
+inline int QuizFilePaths::_internal_quizpaths_size() const {
+  return _internal_quizpaths().size();
+}
+inline int QuizFilePaths::quizpaths_size() const {
+  return _internal_quizpaths_size();
+}
+inline void QuizFilePaths::clear_quizpaths() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.quizpaths_.Clear();
+}
+inline std::string* QuizFilePaths::add_quizpaths()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  std::string* _s = _internal_mutable_quizpaths()->Add();
+  // @@protoc_insertion_point(field_add_mutable:QuizFilePaths.quizPaths)
+  return _s;
+}
+inline const std::string& QuizFilePaths::quizpaths(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:QuizFilePaths.quizPaths)
+  return _internal_quizpaths().Get(index);
+}
+inline std::string* QuizFilePaths::mutable_quizpaths(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:QuizFilePaths.quizPaths)
+  return _internal_mutable_quizpaths()->Mutable(index);
+}
+inline void QuizFilePaths::set_quizpaths(int index, const std::string& value) {
+  _internal_mutable_quizpaths()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::set_quizpaths(int index, std::string&& value) {
+  _internal_mutable_quizpaths()->Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::set_quizpaths(int index, const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  _internal_mutable_quizpaths()->Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::set_quizpaths(int index, const char* value,
+                              std::size_t size) {
+  _internal_mutable_quizpaths()->Mutable(index)->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::set_quizpaths(int index, absl::string_view value) {
+  _internal_mutable_quizpaths()->Mutable(index)->assign(value.data(),
+                                                     value.size());
+  // @@protoc_insertion_point(field_set_string_piece:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::add_quizpaths(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_quizpaths()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::add_quizpaths(std::string&& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_quizpaths()->Add(std::move(value));
+  // @@protoc_insertion_point(field_add:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::add_quizpaths(const char* value) {
+  ABSL_DCHECK(value != nullptr);
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_quizpaths()->Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::add_quizpaths(const char* value, std::size_t size) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_quizpaths()->Add()->assign(
+      reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:QuizFilePaths.quizPaths)
+}
+inline void QuizFilePaths::add_quizpaths(absl::string_view value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_quizpaths()->Add()->assign(value.data(), value.size());
+  // @@protoc_insertion_point(field_add_string_piece:QuizFilePaths.quizPaths)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+QuizFilePaths::quizpaths() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:QuizFilePaths.quizPaths)
+  return _internal_quizpaths();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+QuizFilePaths::mutable_quizpaths() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:QuizFilePaths.quizPaths)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_quizpaths();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+QuizFilePaths::_internal_quizpaths() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.quizpaths_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+QuizFilePaths::_internal_mutable_quizpaths() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.quizpaths_;
+}
+
+// -------------------------------------------------------------------
+
+// QuizChangeRequest
+
+// string quizPath = 1;
+inline void QuizChangeRequest::clear_quizpath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.quizpath_.ClearToEmpty();
+}
+inline const std::string& QuizChangeRequest::quizpath() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:QuizChangeRequest.quizPath)
+  return _internal_quizpath();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void QuizChangeRequest::set_quizpath(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.quizpath_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:QuizChangeRequest.quizPath)
+}
+inline std::string* QuizChangeRequest::mutable_quizpath() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_quizpath();
+  // @@protoc_insertion_point(field_mutable:QuizChangeRequest.quizPath)
+  return _s;
+}
+inline const std::string& QuizChangeRequest::_internal_quizpath() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.quizpath_.Get();
+}
+inline void QuizChangeRequest::_internal_set_quizpath(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.quizpath_.Set(value, GetArena());
+}
+inline std::string* QuizChangeRequest::_internal_mutable_quizpath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.quizpath_.Mutable( GetArena());
+}
+inline std::string* QuizChangeRequest::release_quizpath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:QuizChangeRequest.quizPath)
+  return _impl_.quizpath_.Release();
+}
+inline void QuizChangeRequest::set_allocated_quizpath(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.quizpath_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.quizpath_.IsDefault()) {
+          _impl_.quizpath_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:QuizChangeRequest.quizPath)
+}
+
+// -------------------------------------------------------------------
+
 // MessageEnvelope
 
 // .MessageEnvelope.MessageType type = 1;
@@ -1518,79 +2279,79 @@ inline void MessageEnvelope::_internal_set_type(::MessageEnvelope_MessageType va
   _impl_.type_ = value;
 }
 
-// .ClientConnect clientConnect = 2;
-inline bool MessageEnvelope::has_clientconnect() const {
-  return payload_case() == kClientConnect;
+// .ClientLogin clientLogin = 2;
+inline bool MessageEnvelope::has_clientlogin() const {
+  return payload_case() == kClientLogin;
 }
-inline bool MessageEnvelope::_internal_has_clientconnect() const {
-  return payload_case() == kClientConnect;
+inline bool MessageEnvelope::_internal_has_clientlogin() const {
+  return payload_case() == kClientLogin;
 }
-inline void MessageEnvelope::set_has_clientconnect() {
-  _impl_._oneof_case_[0] = kClientConnect;
+inline void MessageEnvelope::set_has_clientlogin() {
+  _impl_._oneof_case_[0] = kClientLogin;
 }
-inline void MessageEnvelope::clear_clientconnect() {
+inline void MessageEnvelope::clear_clientlogin() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (payload_case() == kClientConnect) {
+  if (payload_case() == kClientLogin) {
     if (GetArena() == nullptr) {
-      delete _impl_.payload_.clientconnect_;
+      delete _impl_.payload_.clientlogin_;
     }
     clear_has_payload();
   }
 }
-inline ::ClientConnect* MessageEnvelope::release_clientconnect() {
-  // @@protoc_insertion_point(field_release:MessageEnvelope.clientConnect)
-  if (payload_case() == kClientConnect) {
+inline ::ClientLogin* MessageEnvelope::release_clientlogin() {
+  // @@protoc_insertion_point(field_release:MessageEnvelope.clientLogin)
+  if (payload_case() == kClientLogin) {
     clear_has_payload();
-    auto* temp = _impl_.payload_.clientconnect_;
+    auto* temp = _impl_.payload_.clientlogin_;
     if (GetArena() != nullptr) {
       temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
     }
-    _impl_.payload_.clientconnect_ = nullptr;
+    _impl_.payload_.clientlogin_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline const ::ClientConnect& MessageEnvelope::_internal_clientconnect() const {
-  return payload_case() == kClientConnect ? *_impl_.payload_.clientconnect_ : reinterpret_cast<::ClientConnect&>(::_ClientConnect_default_instance_);
+inline const ::ClientLogin& MessageEnvelope::_internal_clientlogin() const {
+  return payload_case() == kClientLogin ? *_impl_.payload_.clientlogin_ : reinterpret_cast<::ClientLogin&>(::_ClientLogin_default_instance_);
 }
-inline const ::ClientConnect& MessageEnvelope::clientconnect() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:MessageEnvelope.clientConnect)
-  return _internal_clientconnect();
+inline const ::ClientLogin& MessageEnvelope::clientlogin() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MessageEnvelope.clientLogin)
+  return _internal_clientlogin();
 }
-inline ::ClientConnect* MessageEnvelope::unsafe_arena_release_clientconnect() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:MessageEnvelope.clientConnect)
-  if (payload_case() == kClientConnect) {
+inline ::ClientLogin* MessageEnvelope::unsafe_arena_release_clientlogin() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:MessageEnvelope.clientLogin)
+  if (payload_case() == kClientLogin) {
     clear_has_payload();
-    auto* temp = _impl_.payload_.clientconnect_;
-    _impl_.payload_.clientconnect_ = nullptr;
+    auto* temp = _impl_.payload_.clientlogin_;
+    _impl_.payload_.clientlogin_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void MessageEnvelope::unsafe_arena_set_allocated_clientconnect(::ClientConnect* value) {
+inline void MessageEnvelope::unsafe_arena_set_allocated_clientlogin(::ClientLogin* value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
   clear_payload();
   if (value) {
-    set_has_clientconnect();
-    _impl_.payload_.clientconnect_ = value;
+    set_has_clientlogin();
+    _impl_.payload_.clientlogin_ = value;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:MessageEnvelope.clientConnect)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:MessageEnvelope.clientLogin)
 }
-inline ::ClientConnect* MessageEnvelope::_internal_mutable_clientconnect() {
-  if (payload_case() != kClientConnect) {
+inline ::ClientLogin* MessageEnvelope::_internal_mutable_clientlogin() {
+  if (payload_case() != kClientLogin) {
     clear_payload();
-    set_has_clientconnect();
-    _impl_.payload_.clientconnect_ = CreateMaybeMessage<::ClientConnect>(GetArena());
+    set_has_clientlogin();
+    _impl_.payload_.clientlogin_ = CreateMaybeMessage<::ClientLogin>(GetArena());
   }
-  return _impl_.payload_.clientconnect_;
+  return _impl_.payload_.clientlogin_;
 }
-inline ::ClientConnect* MessageEnvelope::mutable_clientconnect() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::ClientConnect* _msg = _internal_mutable_clientconnect();
-  // @@protoc_insertion_point(field_mutable:MessageEnvelope.clientConnect)
+inline ::ClientLogin* MessageEnvelope::mutable_clientlogin() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::ClientLogin* _msg = _internal_mutable_clientlogin();
+  // @@protoc_insertion_point(field_mutable:MessageEnvelope.clientLogin)
   return _msg;
 }
 
@@ -1819,6 +2580,234 @@ inline ::ServerVerdict* MessageEnvelope::_internal_mutable_serververdict() {
 inline ::ServerVerdict* MessageEnvelope::mutable_serververdict() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::ServerVerdict* _msg = _internal_mutable_serververdict();
   // @@protoc_insertion_point(field_mutable:MessageEnvelope.serverVerdict)
+  return _msg;
+}
+
+// .QuizChangeRequest quizChangeRequest = 6;
+inline bool MessageEnvelope::has_quizchangerequest() const {
+  return payload_case() == kQuizChangeRequest;
+}
+inline bool MessageEnvelope::_internal_has_quizchangerequest() const {
+  return payload_case() == kQuizChangeRequest;
+}
+inline void MessageEnvelope::set_has_quizchangerequest() {
+  _impl_._oneof_case_[0] = kQuizChangeRequest;
+}
+inline void MessageEnvelope::clear_quizchangerequest() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (payload_case() == kQuizChangeRequest) {
+    if (GetArena() == nullptr) {
+      delete _impl_.payload_.quizchangerequest_;
+    }
+    clear_has_payload();
+  }
+}
+inline ::QuizChangeRequest* MessageEnvelope::release_quizchangerequest() {
+  // @@protoc_insertion_point(field_release:MessageEnvelope.quizChangeRequest)
+  if (payload_case() == kQuizChangeRequest) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.quizchangerequest_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.payload_.quizchangerequest_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::QuizChangeRequest& MessageEnvelope::_internal_quizchangerequest() const {
+  return payload_case() == kQuizChangeRequest ? *_impl_.payload_.quizchangerequest_ : reinterpret_cast<::QuizChangeRequest&>(::_QuizChangeRequest_default_instance_);
+}
+inline const ::QuizChangeRequest& MessageEnvelope::quizchangerequest() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MessageEnvelope.quizChangeRequest)
+  return _internal_quizchangerequest();
+}
+inline ::QuizChangeRequest* MessageEnvelope::unsafe_arena_release_quizchangerequest() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:MessageEnvelope.quizChangeRequest)
+  if (payload_case() == kQuizChangeRequest) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.quizchangerequest_;
+    _impl_.payload_.quizchangerequest_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void MessageEnvelope::unsafe_arena_set_allocated_quizchangerequest(::QuizChangeRequest* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_payload();
+  if (value) {
+    set_has_quizchangerequest();
+    _impl_.payload_.quizchangerequest_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:MessageEnvelope.quizChangeRequest)
+}
+inline ::QuizChangeRequest* MessageEnvelope::_internal_mutable_quizchangerequest() {
+  if (payload_case() != kQuizChangeRequest) {
+    clear_payload();
+    set_has_quizchangerequest();
+    _impl_.payload_.quizchangerequest_ = CreateMaybeMessage<::QuizChangeRequest>(GetArena());
+  }
+  return _impl_.payload_.quizchangerequest_;
+}
+inline ::QuizChangeRequest* MessageEnvelope::mutable_quizchangerequest() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::QuizChangeRequest* _msg = _internal_mutable_quizchangerequest();
+  // @@protoc_insertion_point(field_mutable:MessageEnvelope.quizChangeRequest)
+  return _msg;
+}
+
+// .QuizFilePathsRequest quizFilePathsRequest = 7;
+inline bool MessageEnvelope::has_quizfilepathsrequest() const {
+  return payload_case() == kQuizFilePathsRequest;
+}
+inline bool MessageEnvelope::_internal_has_quizfilepathsrequest() const {
+  return payload_case() == kQuizFilePathsRequest;
+}
+inline void MessageEnvelope::set_has_quizfilepathsrequest() {
+  _impl_._oneof_case_[0] = kQuizFilePathsRequest;
+}
+inline void MessageEnvelope::clear_quizfilepathsrequest() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (payload_case() == kQuizFilePathsRequest) {
+    if (GetArena() == nullptr) {
+      delete _impl_.payload_.quizfilepathsrequest_;
+    }
+    clear_has_payload();
+  }
+}
+inline ::QuizFilePathsRequest* MessageEnvelope::release_quizfilepathsrequest() {
+  // @@protoc_insertion_point(field_release:MessageEnvelope.quizFilePathsRequest)
+  if (payload_case() == kQuizFilePathsRequest) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.quizfilepathsrequest_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.payload_.quizfilepathsrequest_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::QuizFilePathsRequest& MessageEnvelope::_internal_quizfilepathsrequest() const {
+  return payload_case() == kQuizFilePathsRequest ? *_impl_.payload_.quizfilepathsrequest_ : reinterpret_cast<::QuizFilePathsRequest&>(::_QuizFilePathsRequest_default_instance_);
+}
+inline const ::QuizFilePathsRequest& MessageEnvelope::quizfilepathsrequest() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MessageEnvelope.quizFilePathsRequest)
+  return _internal_quizfilepathsrequest();
+}
+inline ::QuizFilePathsRequest* MessageEnvelope::unsafe_arena_release_quizfilepathsrequest() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:MessageEnvelope.quizFilePathsRequest)
+  if (payload_case() == kQuizFilePathsRequest) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.quizfilepathsrequest_;
+    _impl_.payload_.quizfilepathsrequest_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void MessageEnvelope::unsafe_arena_set_allocated_quizfilepathsrequest(::QuizFilePathsRequest* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_payload();
+  if (value) {
+    set_has_quizfilepathsrequest();
+    _impl_.payload_.quizfilepathsrequest_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:MessageEnvelope.quizFilePathsRequest)
+}
+inline ::QuizFilePathsRequest* MessageEnvelope::_internal_mutable_quizfilepathsrequest() {
+  if (payload_case() != kQuizFilePathsRequest) {
+    clear_payload();
+    set_has_quizfilepathsrequest();
+    _impl_.payload_.quizfilepathsrequest_ = CreateMaybeMessage<::QuizFilePathsRequest>(GetArena());
+  }
+  return _impl_.payload_.quizfilepathsrequest_;
+}
+inline ::QuizFilePathsRequest* MessageEnvelope::mutable_quizfilepathsrequest() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::QuizFilePathsRequest* _msg = _internal_mutable_quizfilepathsrequest();
+  // @@protoc_insertion_point(field_mutable:MessageEnvelope.quizFilePathsRequest)
+  return _msg;
+}
+
+// .QuizFilePaths quizFilePaths = 8;
+inline bool MessageEnvelope::has_quizfilepaths() const {
+  return payload_case() == kQuizFilePaths;
+}
+inline bool MessageEnvelope::_internal_has_quizfilepaths() const {
+  return payload_case() == kQuizFilePaths;
+}
+inline void MessageEnvelope::set_has_quizfilepaths() {
+  _impl_._oneof_case_[0] = kQuizFilePaths;
+}
+inline void MessageEnvelope::clear_quizfilepaths() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (payload_case() == kQuizFilePaths) {
+    if (GetArena() == nullptr) {
+      delete _impl_.payload_.quizfilepaths_;
+    }
+    clear_has_payload();
+  }
+}
+inline ::QuizFilePaths* MessageEnvelope::release_quizfilepaths() {
+  // @@protoc_insertion_point(field_release:MessageEnvelope.quizFilePaths)
+  if (payload_case() == kQuizFilePaths) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.quizfilepaths_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.payload_.quizfilepaths_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::QuizFilePaths& MessageEnvelope::_internal_quizfilepaths() const {
+  return payload_case() == kQuizFilePaths ? *_impl_.payload_.quizfilepaths_ : reinterpret_cast<::QuizFilePaths&>(::_QuizFilePaths_default_instance_);
+}
+inline const ::QuizFilePaths& MessageEnvelope::quizfilepaths() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MessageEnvelope.quizFilePaths)
+  return _internal_quizfilepaths();
+}
+inline ::QuizFilePaths* MessageEnvelope::unsafe_arena_release_quizfilepaths() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:MessageEnvelope.quizFilePaths)
+  if (payload_case() == kQuizFilePaths) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.quizfilepaths_;
+    _impl_.payload_.quizfilepaths_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void MessageEnvelope::unsafe_arena_set_allocated_quizfilepaths(::QuizFilePaths* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_payload();
+  if (value) {
+    set_has_quizfilepaths();
+    _impl_.payload_.quizfilepaths_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:MessageEnvelope.quizFilePaths)
+}
+inline ::QuizFilePaths* MessageEnvelope::_internal_mutable_quizfilepaths() {
+  if (payload_case() != kQuizFilePaths) {
+    clear_payload();
+    set_has_quizfilepaths();
+    _impl_.payload_.quizfilepaths_ = CreateMaybeMessage<::QuizFilePaths>(GetArena());
+  }
+  return _impl_.payload_.quizfilepaths_;
+}
+inline ::QuizFilePaths* MessageEnvelope::mutable_quizfilepaths() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::QuizFilePaths* _msg = _internal_mutable_quizfilepaths();
+  // @@protoc_insertion_point(field_mutable:MessageEnvelope.quizFilePaths)
   return _msg;
 }
 

@@ -158,6 +158,7 @@ void Client::OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCa
 
 void Client::OnConnected()
 {
+	std::cout << "Connected to the server" << std::endl;
 	MessageEnvelope envelope;
 	envelope.set_type(MessageEnvelope::CLIENT_LOGIN);
 

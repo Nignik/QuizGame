@@ -6,16 +6,19 @@ int main(int argc, const char* argv[])
 {
 	if (argc < 2)
 	{
-		std::cerr << "Usage: " << argv[0] << " <server_address>\n";
-		return 1;
+		Client::Init("192.168.56.1");
 	}
-
-	Client::Init(argv[1]);
+	else
+	{
+		Client::Init(argv[1]);
+	}
+	
 	Client* client = Client::s_instance;
 
 	client->SendQuizFilePathsRequest();
 	while (!client->m_quizFilePathsAvailable)
 	{
+		client->OnTick();
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
 

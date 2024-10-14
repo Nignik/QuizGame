@@ -35,13 +35,18 @@ void UI::RenderQuizOptions()
 	{
 		m_quizOptions.createQuiz.onClick();
 	}
+	ImGui::NewLine();
 
 	ImGui::Text("Quiz files: ");
-	for (auto& quiz : m_quizOptions.quizPaths)
+	for (int i = 0; i < m_quizOptions.quizPaths.size(); i++)
 	{
-		if (ImGui::Selectable(quiz.c_str()))
+		std::string path = m_quizOptions.quizPaths[i];
+		if (ImGui::Selectable(path.c_str(), m_quizOptions.selectedQuizPath == i))
 		{
-			m_quizOptions.setPath(quiz);
+			if (m_quizOptions.selectedQuizPath != i)
+				m_quizOptions.setPath(path);
+
+			m_quizOptions.selectedQuizPath = i;
 		}
 	}
 

@@ -26,6 +26,8 @@ struct QuizOptions
 	UIButton createQuiz;
 	std::vector<std::string> quizPaths{};
 	std::function<void(std::string&)> setPath;
+
+	int selectedQuizPath = -1;
 };
 
 class UI

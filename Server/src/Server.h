@@ -24,6 +24,8 @@ class Server
 public:
 	static Server* s_instance;
 
+	fs::path m_quizDirectory;
+
 	Server(const Server&) = delete;
 	Server& operator=(const Server&) = delete;
 
@@ -33,6 +35,7 @@ public:
 	void LoadQuiz(fs::path filePath);
 
 	void Run();
+	void SendFilePaths(const HSteamNetConnection& connection);
 	void SendQuestion(const HSteamNetConnection& connection);
 	void SendVerdict(HSteamNetConnection& connection, bool correct);
 
@@ -42,7 +45,7 @@ private:
 
 	std::unique_ptr<Quiz> m_quiz;
 
-	std::map<HSteamNetConnection, QuizCard> m_players;
+	std::map<HSteamNetConnection, std::unique_ptr<QuizCard>> m_players;
 
 	static HSteamListenSocket m_listenSocket;
 	static HSteamNetPollGroup m_pollGroup;
@@ -53,6 +56,8 @@ private:
 	void OnPlayerConnect(HSteamNetConnection& connection);
 	void OnPlayerDisconnect(HSteamNetConnection& connection);
 	void OnPlayerLogin(const ClientLogin& clientLogin, HSteamNetConnection& connection);
+	void OnQuizFilePathsRequest(HSteamNetConnection& connection);
+	void OnQuizChangeRequest(const QuizChangeRequest& quizChangeRequest, HSteamNetConnection& connection);
 	void OnClientAnswer(const ClientAnswer& clientAnswer, HSteamNetConnection& connection);
 
 	static void OnSteamNetConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t* pInfo);

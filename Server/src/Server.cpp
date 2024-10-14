@@ -62,12 +62,18 @@ void Server::Shutdown()
 
 void Server::LoadQuiz(fs::path filePath)
 {
+	if (!fs::exists(filePath))
+	{
+		std::cout << "Incorrect file path given" << std::endl;
+		return;
+	}
+
 	std::ifstream file = getCsvFile(filePath);
 	auto shuffle = std::make_shared<RandomShuffle>();
 	m_quiz = std::make_unique<Quiz>(extractCards(file), shuffle);
 	for (auto& [conn, card] : m_players)
 	{
-		card = m_quiz->GetCurrentCard();
+		card = std::make_unique<QuizCard>(m_quiz->GetCurrentCard());
 		SendQuestion(conn);
 	}
 	m_quiz->NextCard();
@@ -83,6 +89,24 @@ void Server::Run()
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
+}
+
+void Server::SendFilePaths(const HSteamNetConnection& connection)
+{
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::QUIZ_FILE_PATHS);
+
+	QuizFilePaths* message = envelope.mutable_quizfilepaths();
+	for (const auto& entry : fs::directory_iterator(m_quizDirectory))
+	{
+		message->add_quizpaths(entry.path().string());
+	}
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
 }
 
 void Server::SendQuestion(const HSteamNetConnection& connection)
@@ -106,7 +130,7 @@ void Server::SendVerdict(HSteamNetConnection& connection, bool correct)
 	envelope.set_type(MessageEnvelope::SERVER_VERDICT);
 
 	ServerVerdict* message = envelope.mutable_serververdict();
-	message->set_answer(m_players[connection].answer);
+	message->set_answer(m_players[connection]->answer);
 	message->set_correct(correct);
 
 	std::string serializedData;
@@ -128,10 +152,12 @@ void Server::PollMessages()
 		envelope.ParseFromString(receivedData);
 		switch (envelope.type())
 		{
-			case MessageEnvelope::CLIENT_LOGIN:			OnPlayerLogin(envelope.clientlogin(), incomingMsg->m_conn);				break;
-			case MessageEnvelope::CLIENT_ANSWER:		OnClientAnswer(envelope.clientanswer(), incomingMsg->m_conn);			break;
+			case MessageEnvelope::CLIENT_LOGIN:				OnPlayerLogin(envelope.clientlogin(), incomingMsg->m_conn);								break;
+			case MessageEnvelope::QUIZ_FILE_PATHS_REQUEST:	OnQuizFilePathsRequest(incomingMsg->m_conn);											break;
+			case MessageEnvelope::QUIZ_CHANGE_REQUEST:		OnQuizChangeRequest(envelope.quizchangerequest(), incomingMsg->m_conn);					break;
+			case MessageEnvelope::CLIENT_ANSWER:			OnClientAnswer(envelope.clientanswer(), incomingMsg->m_conn);							break;
 
-			default:									std::cout << "Reveived invalid packet" << std::endl;					break;
+			default:									std::cout << "Reveived invalid packet" << std::endl;										break;
 		}
 
 		incomingMsg->Release();
@@ -145,6 +171,8 @@ void Server::OnPlayerConnect(HSteamNetConnection& connection)
 
 	// Assign the connection to the poll group
 	SteamNetworkingSockets()->SetConnectionPollGroup(connection, m_pollGroup);
+
+	m_players[connection] = nullptr;
 }
 
 void Server::OnPlayerDisconnect(HSteamNetConnection& connection)
@@ -155,20 +183,27 @@ void Server::OnPlayerDisconnect(HSteamNetConnection& connection)
 void Server::OnPlayerLogin(const ClientLogin& clientLogin, HSteamNetConnection& connection)
 {
 	std::cout << "New connection: " << clientLogin.name() << " from: " << connection << "\n\n";
+}
 
-	m_players[connection] = m_quiz->GetCurrentCard();
-	SendQuestion(connection);
+void Server::OnQuizFilePathsRequest(HSteamNetConnection& connection)
+{
+	SendFilePaths(connection);
+}
 
-	m_quiz->NextCard();
+void Server::OnQuizChangeRequest(const QuizChangeRequest& quizChangeRequest, HSteamNetConnection& connection)
+{
+	std::cout << "Received quiz change request" << std::endl;
+	
+	LoadQuiz(fs::path(quizChangeRequest.quizpath()));
 }
 
 void Server::OnClientAnswer(const ClientAnswer& clientAnswer, HSteamNetConnection& connection)
 {
 	std::cout << "Client answer: " << clientAnswer.answer() << " from: " << clientAnswer.name() << '(' << connection << ")\n\n";
 	
-	SendVerdict(connection, clientAnswer.answer() == m_players[connection].answer ? true : false);
+	SendVerdict(connection, clientAnswer.answer() == m_players[connection]->answer ? true : false);
 
-	m_players[connection] = m_quiz->GetCurrentCard();
+	m_players[connection] = std::make_unique<QuizCard>(m_quiz->GetCurrentCard());
 	SendQuestion(connection);
 
 	m_quiz->NextCard();

@@ -100,6 +100,7 @@ inline constexpr QuizChangeRequest::Impl_::Impl_(
       : quizpath_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        repeats_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -251,6 +252,7 @@ const ::uint32_t TableStruct_src_2fPackets_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::QuizChangeRequest, _impl_.quizpath_),
+    PROTOBUF_FIELD_OFFSET(::QuizChangeRequest, _impl_.repeats_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -279,7 +281,7 @@ static const ::_pbi::MigrationSchema
         {38, -1, -1, sizeof(::QuizFilePathsRequest)},
         {46, -1, -1, sizeof(::QuizFilePaths)},
         {55, -1, -1, sizeof(::QuizChangeRequest)},
-        {64, -1, -1, sizeof(::MessageEnvelope)},
+        {65, -1, -1, sizeof(::MessageEnvelope)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -299,27 +301,28 @@ const char descriptor_table_protodef_src_2fPackets_2eproto[] PROTOBUF_SECTION_VA
     "tion\030\001 \001(\t\"0\n\rServerVerdict\022\016\n\006answer\030\001 "
     "\001(\t\022\017\n\007correct\030\002 \001(\010\"\026\n\024QuizFilePathsReq"
     "uest\"\"\n\rQuizFilePaths\022\021\n\tquizPaths\030\001 \003(\t"
-    "\"%\n\021QuizChangeRequest\022\020\n\010quizPath\030\001 \001(\t\""
-    "\242\004\n\017MessageEnvelope\022*\n\004type\030\001 \001(\0162\034.Mess"
-    "ageEnvelope.MessageType\022#\n\013clientLogin\030\002"
-    " \001(\0132\014.ClientLoginH\000\022%\n\014clientAnswer\030\003 \001"
-    "(\0132\r.ClientAnswerH\000\022)\n\016serverQuestion\030\004 "
-    "\001(\0132\017.ServerQuestionH\000\022\'\n\rserverVerdict\030"
-    "\005 \001(\0132\016.ServerVerdictH\000\022/\n\021quizChangeReq"
-    "uest\030\006 \001(\0132\022.QuizChangeRequestH\000\0225\n\024quiz"
-    "FilePathsRequest\030\007 \001(\0132\025.QuizFilePathsRe"
-    "questH\000\022\'\n\rquizFilePaths\030\010 \001(\0132\016.QuizFil"
-    "ePathsH\000\"\246\001\n\013MessageType\022\020\n\014CLIENT_LOGIN"
-    "\020\000\022\021\n\rCLIENT_ANSWER\020\001\022\023\n\017SERVER_QUESTION"
-    "\020\002\022\022\n\016SERVER_VERDICT\020\003\022\027\n\023QUIZ_CHANGE_RE"
-    "QUEST\020\004\022\033\n\027QUIZ_FILE_PATHS_REQUEST\020\005\022\023\n\017"
-    "QUIZ_FILE_PATHS\020\006B\t\n\007payloadb\006proto3"
+    "\"6\n\021QuizChangeRequest\022\020\n\010quizPath\030\001 \001(\t\022"
+    "\017\n\007repeats\030\002 \001(\005\"\242\004\n\017MessageEnvelope\022*\n\004"
+    "type\030\001 \001(\0162\034.MessageEnvelope.MessageType"
+    "\022#\n\013clientLogin\030\002 \001(\0132\014.ClientLoginH\000\022%\n"
+    "\014clientAnswer\030\003 \001(\0132\r.ClientAnswerH\000\022)\n\016"
+    "serverQuestion\030\004 \001(\0132\017.ServerQuestionH\000\022"
+    "\'\n\rserverVerdict\030\005 \001(\0132\016.ServerVerdictH\000"
+    "\022/\n\021quizChangeRequest\030\006 \001(\0132\022.QuizChange"
+    "RequestH\000\0225\n\024quizFilePathsRequest\030\007 \001(\0132"
+    "\025.QuizFilePathsRequestH\000\022\'\n\rquizFilePath"
+    "s\030\010 \001(\0132\016.QuizFilePathsH\000\"\246\001\n\013MessageTyp"
+    "e\022\020\n\014CLIENT_LOGIN\020\000\022\021\n\rCLIENT_ANSWER\020\001\022\023"
+    "\n\017SERVER_QUESTION\020\002\022\022\n\016SERVER_VERDICT\020\003\022"
+    "\027\n\023QUIZ_CHANGE_REQUEST\020\004\022\033\n\027QUIZ_FILE_PA"
+    "THS_REQUEST\020\005\022\023\n\017QUIZ_FILE_PATHS\020\006B\t\n\007pa"
+    "yloadb\006proto3"
 };
 static ::absl::once_flag descriptor_table_src_2fPackets_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_src_2fPackets_2eproto = {
     false,
     false,
-    836,
+    853,
     descriptor_table_protodef_src_2fPackets_2eproto,
     "src/Packets.proto",
     &descriptor_table_src_2fPackets_2eproto_once,
@@ -1436,6 +1439,7 @@ QuizChangeRequest::QuizChangeRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.repeats_ = from._impl_.repeats_;
 
   // @@protoc_insertion_point(copy_constructor:QuizChangeRequest)
 }
@@ -1447,6 +1451,7 @@ inline PROTOBUF_NDEBUG_INLINE QuizChangeRequest::Impl_::Impl_(
 
 inline void QuizChangeRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.repeats_ = {};
 }
 QuizChangeRequest::~QuizChangeRequest() {
   // @@protoc_insertion_point(destructor:QuizChangeRequest)
@@ -1467,6 +1472,7 @@ PROTOBUF_NOINLINE void QuizChangeRequest::Clear() {
   (void) cached_has_bits;
 
   _impl_.quizpath_.ClearToEmpty();
+  _impl_.repeats_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1478,20 +1484,23 @@ const char* QuizChangeRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 34, 2> QuizChangeRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 34, 2> QuizChangeRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_QuizChangeRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
+    // int32 repeats = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(QuizChangeRequest, _impl_.repeats_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(QuizChangeRequest, _impl_.repeats_)}},
     // string quizPath = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(QuizChangeRequest, _impl_.quizpath_)}},
@@ -1501,6 +1510,9 @@ const ::_pbi::TcParseTable<0, 1, 0, 34, 2> QuizChangeRequest::_table_ = {
     // string quizPath = 1;
     {PROTOBUF_FIELD_OFFSET(QuizChangeRequest, _impl_.quizpath_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 repeats = 2;
+    {PROTOBUF_FIELD_OFFSET(QuizChangeRequest, _impl_.repeats_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
@@ -1523,6 +1535,13 @@ const ::_pbi::TcParseTable<0, 1, 0, 34, 2> QuizChangeRequest::_table_ = {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "QuizChangeRequest.quizPath");
     target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // int32 repeats = 2;
+  if (this->_internal_repeats() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_repeats(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1548,6 +1567,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 34, 2> QuizChangeRequest::_table_ = {
                                     this->_internal_quizpath());
   }
 
+  // int32 repeats = 2;
+  if (this->_internal_repeats() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_repeats());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1569,6 +1594,9 @@ void QuizChangeRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::g
 
   if (!from._internal_quizpath().empty()) {
     _this->_internal_set_quizpath(from._internal_quizpath());
+  }
+  if (from._internal_repeats() != 0) {
+    _this->_internal_set_repeats(from._internal_repeats());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1593,6 +1621,7 @@ void QuizChangeRequest::InternalSwap(QuizChangeRequest* PROTOBUF_RESTRICT other)
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.quizpath_, &other->_impl_.quizpath_, arena);
+        swap(_impl_.repeats_, other->_impl_.repeats_);
 }
 
 ::google::protobuf::Metadata QuizChangeRequest::GetMetadata() const {

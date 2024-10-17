@@ -60,16 +60,17 @@ void Server::Shutdown()
 	s_instance = nullptr;
 }
 
-void Server::LoadQuiz(fs::path filePath)
+void Server::LoadQuiz(QuizBlueprint& quizData)
 {
-	if (!fs::exists(filePath))
+	fs::path quizPath(quizData.path);
+	if (!fs::exists(quizPath))
 	{
 		std::cout << "Incorrect file path given" << std::endl;
 		return;
 	}
 
-	std::ifstream file = getCsvFile(filePath);
-	auto shuffle = std::make_shared<RandomShuffle>();
+	std::ifstream file = getCsvFile(quizPath);
+	auto shuffle = std::make_shared<MultiplyShuffle>(quizData.repeats);
 	m_quiz = std::make_unique<Quiz>(extractCards(file), shuffle);
 	for (auto& [conn, card] : m_players)
 	{
@@ -194,7 +195,8 @@ void Server::OnQuizChangeRequest(const QuizChangeRequest& quizChangeRequest, HSt
 {
 	std::cout << "Received quiz change request" << std::endl;
 	
-	LoadQuiz(fs::path(quizChangeRequest.quizpath()));
+	QuizBlueprint quizData(quizChangeRequest.quizpath(), quizChangeRequest.repeats());
+	LoadQuiz(quizData);
 }
 
 void Server::OnClientAnswer(const ClientAnswer& clientAnswer, HSteamNetConnection& connection)

@@ -100,6 +100,7 @@ void Client::SendQuizChangeRequest()
 
 	QuizChangeRequest* message = envelope.mutable_quizchangerequest();
 	message->set_quizpath(m_quizBlueprint.path);
+	message->set_repeats(m_quizBlueprint.repeats);
 
 	std::string serializedData;
 	envelope.SerializeToString(&serializedData);

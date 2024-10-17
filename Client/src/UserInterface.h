@@ -7,12 +7,13 @@
 #include <imgui.h>
 #include <imgui_stdlib.h>
 
+template <typename T>
 struct InputField
 {
 	std::string label;
-	std::function<void(std::string&)> func;
+	std::function<void(T&)> OnInput;
 
-	std::string val;
+	T val;
 };
 
 struct UIButton
@@ -21,19 +22,25 @@ struct UIButton
 	std::function<void()> onClick;
 };
 
+struct ListSelection
+{
+	std::vector<std::string> selection{};
+	std::function<void(std::string&)> OnSelected;
+
+	int selected = -1;
+};
+
 struct QuizOptions
 {
 	UIButton createQuiz;
-	std::vector<std::string> quizPaths{};
-	std::function<void(std::string&)> setPath;
-
-	int selectedQuizPath = -1;
+	InputField<int> repeats;
+	ListSelection quizPathSelection;
 };
 
 class UI
 {
 public:
-	UI(InputField&& inputField, QuizOptions&& quizOptions);
+	UI(InputField<std::string>&& inputField, QuizOptions&& quizOptions);
 
 	void Render();
 
@@ -41,6 +48,6 @@ public:
 	void RenderQuizOptions();
 
 private:
-	InputField m_inputField;
+	InputField<std::string> m_inputField;
 	QuizOptions m_quizOptions;
 };

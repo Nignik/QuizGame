@@ -966,6 +966,7 @@ class QuizChangeRequest final :
 
   enum : int {
     kQuizPathFieldNumber = 1,
+    kRepeatsFieldNumber = 2,
   };
   // string quizPath = 1;
   void clear_quizpath() ;
@@ -983,13 +984,23 @@ class QuizChangeRequest final :
   std::string* _internal_mutable_quizpath();
 
   public:
+  // int32 repeats = 2;
+  void clear_repeats() ;
+  ::int32_t repeats() const;
+  void set_repeats(::int32_t value);
+
+  private:
+  ::int32_t _internal_repeats() const;
+  void _internal_set_repeats(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:QuizChangeRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
+      1, 2, 0,
       34, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1007,6 +1018,7 @@ class QuizChangeRequest final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr quizpath_;
+    ::int32_t repeats_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2250,6 +2262,29 @@ inline void QuizChangeRequest::set_allocated_quizpath(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:QuizChangeRequest.quizPath)
+}
+
+// int32 repeats = 2;
+inline void QuizChangeRequest::clear_repeats() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.repeats_ = 0;
+}
+inline ::int32_t QuizChangeRequest::repeats() const {
+  // @@protoc_insertion_point(field_get:QuizChangeRequest.repeats)
+  return _internal_repeats();
+}
+inline void QuizChangeRequest::set_repeats(::int32_t value) {
+  _internal_set_repeats(value);
+  // @@protoc_insertion_point(field_set:QuizChangeRequest.repeats)
+}
+inline ::int32_t QuizChangeRequest::_internal_repeats() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.repeats_;
+}
+inline void QuizChangeRequest::_internal_set_repeats(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.repeats_ = value;
 }
 
 // -------------------------------------------------------------------

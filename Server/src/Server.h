@@ -12,6 +12,7 @@
 
 #include <Serializer.h>
 #include <Packets.pb.h>
+#include <QuizBlueprint.h>
 
 #include "Quiz.h"
 #include "FilesHandler.h"
@@ -32,7 +33,7 @@ public:
 	static void Init();
 	static void Shutdown();
 
-	void LoadQuiz(fs::path filePath);
+	void LoadQuiz(QuizBlueprint& quizData);
 
 	void Run();
 	void SendFilePaths(const HSteamNetConnection& connection);

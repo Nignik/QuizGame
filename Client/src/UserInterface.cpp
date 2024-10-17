@@ -1,6 +1,6 @@
 #include "UserInterface.h"
 
-UI::UI(InputField&& inputField, QuizOptions&& quizOptions)
+UI::UI(InputField<std::string>&& inputField, QuizOptions&& quizOptions)
 	: m_inputField(std::move(inputField)),
 	m_quizOptions(std::move(quizOptions))
 {
@@ -19,7 +19,7 @@ void UI::RenderInputField()
 
 	if (ImGui::InputText(m_inputField.label.c_str(), &m_inputField.val, ImGuiInputTextFlags_EnterReturnsTrue))
 	{
-		m_inputField.func(m_inputField.val);
+		m_inputField.OnInput(m_inputField.val);
 		m_inputField.val.clear();
 		ImGui::SetKeyboardFocusHere(-1);
 	}
@@ -35,19 +35,28 @@ void UI::RenderQuizOptions()
 	{
 		m_quizOptions.createQuiz.onClick();
 	}
+
 	ImGui::NewLine();
-
 	ImGui::Text("Quiz files: ");
-	for (int i = 0; i < m_quizOptions.quizPaths.size(); i++)
+	auto& paths = m_quizOptions.quizPathSelection;
+	for (size_t i = 0; i < paths.selection.size(); i++)
 	{
-		std::string path = m_quizOptions.quizPaths[i];
-		if (ImGui::Selectable(path.c_str(), m_quizOptions.selectedQuizPath == i))
+		std::string path = paths.selection[i];
+		if (ImGui::Selectable(path.c_str(), paths.selected == i))
 		{
-			if (m_quizOptions.selectedQuizPath != i)
-				m_quizOptions.setPath(path);
+			if (paths.selected != i)
+				paths.OnSelected(path);
 
-			m_quizOptions.selectedQuizPath = i;
+			paths.selected = i;
 		}
+	}
+	
+	ImGui::NewLine();
+	int* reps = &m_quizOptions.repeats.val;
+	if (ImGui::InputInt("Repeats", reps))
+	{
+		if (*reps < 1) *reps = 1;
+		m_quizOptions.repeats.OnInput(m_quizOptions.repeats.val);
 	}
 
 	ImGui::End();

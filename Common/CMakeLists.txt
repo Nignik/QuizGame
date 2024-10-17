@@ -18,7 +18,7 @@ find_package(Protobuf CONFIG REQUIRED)
 file(GLOB PROTO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.proto")
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTO_FILES})
 
-add_library(Common STATIC ${SOURCES} ${PROTO_SRCS} ${PROTO_HDRS})
+add_library(Common STATIC ${SOURCES} ${HEADERS} ${PROTO_SRCS} ${PROTO_HDRS})
 
 include_directories(${PROTOBUF_INCLUDE_DIRS})
 target_link_libraries(Common PRIVATE protobuf::libprotobuf)
@@ -37,7 +37,7 @@ install(TARGETS Common EXPORT CommonTargets
 install(EXPORT CommonTargets
         FILE CommonConfig.cmake
         NAMESPACE Common::                # Use Common:: as a namespace prefix for this library
-        DESTINATION lib/cmake/Common)
+        DESTINATION lib/cmake/Common)   
 
 # Install headers
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/

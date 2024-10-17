@@ -27,6 +27,7 @@ message QuizFilePaths {
 
 message QuizChangeRequest {
     string quizPath = 1;
+    int32 repeats = 2;
 }
 
 message MessageEnvelope {

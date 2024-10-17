@@ -11,16 +11,16 @@
 
 #include <windows.h>
 
+#include <QuizBlueprint.h>
 #include <Serializer.h>
 #include <Packets.pb.h>
 
-#include "QuizBlueprint.h"
 
 class Client
 {
 public:
 	static Client* s_instance;
-	QuizBlueprint m_quizBlueprint;
+	QuizBlueprint m_quizBlueprint{};
 	bool m_quizFilePathsAvailable = false;
 
 	Client(const Client&) = delete;
@@ -51,7 +51,7 @@ private:
 
 	std::string m_name = "maks";
 
-	std::vector<std::string> m_quizFilePaths;
+	std::vector<std::string> m_quizFilePaths{};
 
 	SteamNetworkingIPAddr m_serverAddress{};
 

@@ -66,6 +66,9 @@ extern ClientLoginDefaultTypeInternal _ClientLogin_default_instance_;
 class MessageEnvelope;
 struct MessageEnvelopeDefaultTypeInternal;
 extern MessageEnvelopeDefaultTypeInternal _MessageEnvelope_default_instance_;
+class PlayerDataMsg;
+struct PlayerDataMsgDefaultTypeInternal;
+extern PlayerDataMsgDefaultTypeInternal _PlayerDataMsg_default_instance_;
 class QuizChangeRequest;
 struct QuizChangeRequestDefaultTypeInternal;
 extern QuizChangeRequestDefaultTypeInternal _QuizChangeRequest_default_instance_;
@@ -94,6 +97,7 @@ enum MessageEnvelope_MessageType : int {
   MessageEnvelope_MessageType_QUIZ_CHANGE_REQUEST = 4,
   MessageEnvelope_MessageType_QUIZ_FILE_PATHS_REQUEST = 5,
   MessageEnvelope_MessageType_QUIZ_FILE_PATHS = 6,
+  MessageEnvelope_MessageType_PLAYER_DATA = 7,
   MessageEnvelope_MessageType_MessageEnvelope_MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   MessageEnvelope_MessageType_MessageEnvelope_MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -103,8 +107,8 @@ enum MessageEnvelope_MessageType : int {
 bool MessageEnvelope_MessageType_IsValid(int value);
 extern const uint32_t MessageEnvelope_MessageType_internal_data_[];
 constexpr MessageEnvelope_MessageType MessageEnvelope_MessageType_MessageType_MIN = static_cast<MessageEnvelope_MessageType>(0);
-constexpr MessageEnvelope_MessageType MessageEnvelope_MessageType_MessageType_MAX = static_cast<MessageEnvelope_MessageType>(6);
-constexpr int MessageEnvelope_MessageType_MessageType_ARRAYSIZE = 6 + 1;
+constexpr MessageEnvelope_MessageType MessageEnvelope_MessageType_MessageType_MAX = static_cast<MessageEnvelope_MessageType>(7);
+constexpr int MessageEnvelope_MessageType_MessageType_ARRAYSIZE = 7 + 1;
 const ::google::protobuf::EnumDescriptor*
 MessageEnvelope_MessageType_descriptor();
 template <typename T>
@@ -117,7 +121,7 @@ const std::string& MessageEnvelope_MessageType_Name(T value) {
 template <>
 inline const std::string& MessageEnvelope_MessageType_Name(MessageEnvelope_MessageType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<MessageEnvelope_MessageType_descriptor,
-                                                 0, 6>(
+                                                 0, 7>(
       static_cast<int>(value));
 }
 inline bool MessageEnvelope_MessageType_Parse(absl::string_view name, MessageEnvelope_MessageType* value) {
@@ -1026,6 +1030,199 @@ class QuizChangeRequest final :
   friend struct ::TableStruct_src_2fPackets_2eproto;
 };// -------------------------------------------------------------------
 
+class PlayerDataMsg final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:PlayerDataMsg) */ {
+ public:
+  inline PlayerDataMsg() : PlayerDataMsg(nullptr) {}
+  ~PlayerDataMsg() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR PlayerDataMsg(::google::protobuf::internal::ConstantInitialized);
+
+  inline PlayerDataMsg(const PlayerDataMsg& from)
+      : PlayerDataMsg(nullptr, from) {}
+  PlayerDataMsg(PlayerDataMsg&& from) noexcept
+    : PlayerDataMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline PlayerDataMsg& operator=(const PlayerDataMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlayerDataMsg& operator=(PlayerDataMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlayerDataMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PlayerDataMsg* internal_default_instance() {
+    return reinterpret_cast<const PlayerDataMsg*>(
+               &_PlayerDataMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(PlayerDataMsg& a, PlayerDataMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PlayerDataMsg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlayerDataMsg* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlayerDataMsg* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PlayerDataMsg>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PlayerDataMsg& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const PlayerDataMsg& from) {
+    PlayerDataMsg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(PlayerDataMsg* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "PlayerDataMsg";
+  }
+  protected:
+  explicit PlayerDataMsg(::google::protobuf::Arena* arena);
+  PlayerDataMsg(::google::protobuf::Arena* arena, const PlayerDataMsg& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kScoreFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // int32 score = 2;
+  void clear_score() ;
+  ::int32_t score() const;
+  void set_score(::int32_t value);
+
+  private:
+  ::int32_t _internal_score() const;
+  void _internal_set_score(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:PlayerDataMsg)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      26, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::int32_t score_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_src_2fPackets_2eproto;
+};// -------------------------------------------------------------------
+
 class ClientLogin final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ClientLogin) */ {
  public:
@@ -1468,6 +1665,7 @@ class MessageEnvelope final :
     kQuizChangeRequest = 6,
     kQuizFilePathsRequest = 7,
     kQuizFilePaths = 8,
+    kPlayerData = 9,
     PAYLOAD_NOT_SET = 0,
   };
 
@@ -1476,7 +1674,7 @@ class MessageEnvelope final :
                &_MessageEnvelope_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(MessageEnvelope& a, MessageEnvelope& b) {
     a.Swap(&b);
@@ -1554,6 +1752,7 @@ class MessageEnvelope final :
   static constexpr MessageType QUIZ_CHANGE_REQUEST = MessageEnvelope_MessageType_QUIZ_CHANGE_REQUEST;
   static constexpr MessageType QUIZ_FILE_PATHS_REQUEST = MessageEnvelope_MessageType_QUIZ_FILE_PATHS_REQUEST;
   static constexpr MessageType QUIZ_FILE_PATHS = MessageEnvelope_MessageType_QUIZ_FILE_PATHS;
+  static constexpr MessageType PLAYER_DATA = MessageEnvelope_MessageType_PLAYER_DATA;
   static inline bool MessageType_IsValid(int value) {
     return MessageEnvelope_MessageType_IsValid(value);
   }
@@ -1582,6 +1781,7 @@ class MessageEnvelope final :
     kQuizChangeRequestFieldNumber = 6,
     kQuizFilePathsRequestFieldNumber = 7,
     kQuizFilePathsFieldNumber = 8,
+    kPlayerDataFieldNumber = 9,
   };
   // .MessageEnvelope.MessageType type = 1;
   void clear_type() ;
@@ -1726,6 +1926,25 @@ class MessageEnvelope final :
   ::QuizFilePaths* _internal_mutable_quizfilepaths();
 
   public:
+  // .PlayerDataMsg playerData = 9;
+  bool has_playerdata() const;
+  private:
+  bool _internal_has_playerdata() const;
+
+  public:
+  void clear_playerdata() ;
+  const ::PlayerDataMsg& playerdata() const;
+  PROTOBUF_NODISCARD ::PlayerDataMsg* release_playerdata();
+  ::PlayerDataMsg* mutable_playerdata();
+  void set_allocated_playerdata(::PlayerDataMsg* value);
+  void unsafe_arena_set_allocated_playerdata(::PlayerDataMsg* value);
+  ::PlayerDataMsg* unsafe_arena_release_playerdata();
+
+  private:
+  const ::PlayerDataMsg& _internal_playerdata() const;
+  ::PlayerDataMsg* _internal_mutable_playerdata();
+
+  public:
   void clear_payload();
   PayloadCase payload_case() const;
   // @@protoc_insertion_point(class_scope:MessageEnvelope)
@@ -1738,13 +1957,14 @@ class MessageEnvelope final :
   void set_has_quizchangerequest();
   void set_has_quizfilepathsrequest();
   void set_has_quizfilepaths();
+  void set_has_playerdata();
 
   inline bool has_payload() const;
   inline void clear_has_payload();
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 8, 7,
+      0, 9, 8,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1772,6 +1992,7 @@ class MessageEnvelope final :
       ::QuizChangeRequest* quizchangerequest_;
       ::QuizFilePathsRequest* quizfilepathsrequest_;
       ::QuizFilePaths* quizfilepaths_;
+      ::PlayerDataMsg* playerdata_;
     } payload_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
@@ -2285,6 +2506,86 @@ inline void QuizChangeRequest::_internal_set_repeats(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.repeats_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// PlayerDataMsg
+
+// string name = 1;
+inline void PlayerDataMsg::clear_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& PlayerDataMsg::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:PlayerDataMsg.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void PlayerDataMsg::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:PlayerDataMsg.name)
+}
+inline std::string* PlayerDataMsg::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:PlayerDataMsg.name)
+  return _s;
+}
+inline const std::string& PlayerDataMsg::_internal_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.name_.Get();
+}
+inline void PlayerDataMsg::_internal_set_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* PlayerDataMsg::_internal_mutable_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* PlayerDataMsg::release_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:PlayerDataMsg.name)
+  return _impl_.name_.Release();
+}
+inline void PlayerDataMsg::set_allocated_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:PlayerDataMsg.name)
+}
+
+// int32 score = 2;
+inline void PlayerDataMsg::clear_score() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.score_ = 0;
+}
+inline ::int32_t PlayerDataMsg::score() const {
+  // @@protoc_insertion_point(field_get:PlayerDataMsg.score)
+  return _internal_score();
+}
+inline void PlayerDataMsg::set_score(::int32_t value) {
+  _internal_set_score(value);
+  // @@protoc_insertion_point(field_set:PlayerDataMsg.score)
+}
+inline ::int32_t PlayerDataMsg::_internal_score() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.score_;
+}
+inline void PlayerDataMsg::_internal_set_score(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.score_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -2843,6 +3144,82 @@ inline ::QuizFilePaths* MessageEnvelope::_internal_mutable_quizfilepaths() {
 inline ::QuizFilePaths* MessageEnvelope::mutable_quizfilepaths() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::QuizFilePaths* _msg = _internal_mutable_quizfilepaths();
   // @@protoc_insertion_point(field_mutable:MessageEnvelope.quizFilePaths)
+  return _msg;
+}
+
+// .PlayerDataMsg playerData = 9;
+inline bool MessageEnvelope::has_playerdata() const {
+  return payload_case() == kPlayerData;
+}
+inline bool MessageEnvelope::_internal_has_playerdata() const {
+  return payload_case() == kPlayerData;
+}
+inline void MessageEnvelope::set_has_playerdata() {
+  _impl_._oneof_case_[0] = kPlayerData;
+}
+inline void MessageEnvelope::clear_playerdata() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (payload_case() == kPlayerData) {
+    if (GetArena() == nullptr) {
+      delete _impl_.payload_.playerdata_;
+    }
+    clear_has_payload();
+  }
+}
+inline ::PlayerDataMsg* MessageEnvelope::release_playerdata() {
+  // @@protoc_insertion_point(field_release:MessageEnvelope.playerData)
+  if (payload_case() == kPlayerData) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.playerdata_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.payload_.playerdata_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::PlayerDataMsg& MessageEnvelope::_internal_playerdata() const {
+  return payload_case() == kPlayerData ? *_impl_.payload_.playerdata_ : reinterpret_cast<::PlayerDataMsg&>(::_PlayerDataMsg_default_instance_);
+}
+inline const ::PlayerDataMsg& MessageEnvelope::playerdata() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MessageEnvelope.playerData)
+  return _internal_playerdata();
+}
+inline ::PlayerDataMsg* MessageEnvelope::unsafe_arena_release_playerdata() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:MessageEnvelope.playerData)
+  if (payload_case() == kPlayerData) {
+    clear_has_payload();
+    auto* temp = _impl_.payload_.playerdata_;
+    _impl_.payload_.playerdata_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void MessageEnvelope::unsafe_arena_set_allocated_playerdata(::PlayerDataMsg* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_payload();
+  if (value) {
+    set_has_playerdata();
+    _impl_.payload_.playerdata_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:MessageEnvelope.playerData)
+}
+inline ::PlayerDataMsg* MessageEnvelope::_internal_mutable_playerdata() {
+  if (payload_case() != kPlayerData) {
+    clear_payload();
+    set_has_playerdata();
+    _impl_.payload_.playerdata_ = CreateMaybeMessage<::PlayerDataMsg>(GetArena());
+  }
+  return _impl_.payload_.playerdata_;
+}
+inline ::PlayerDataMsg* MessageEnvelope::mutable_playerdata() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::PlayerDataMsg* _msg = _internal_mutable_playerdata();
+  // @@protoc_insertion_point(field_mutable:MessageEnvelope.playerData)
   return _msg;
 }
 

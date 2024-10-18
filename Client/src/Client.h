@@ -14,6 +14,7 @@
 #include <QuizBlueprint.h>
 #include <Serializer.h>
 #include <Packets.pb.h>
+#include <PlayerData.h>
 
 
 class Client
@@ -26,7 +27,7 @@ public:
 	Client(const Client&) = delete;
 	Client& operator=(const Client&) = delete;
 
-	static void Init(std::string serverAddress);
+	static void Init(std::string serverAddress, int* score);
 	static void Shutdown();
 
 	void OnTick();
@@ -52,10 +53,12 @@ private:
 	std::string m_name = "maks";
 
 	std::vector<std::string> m_quizFilePaths{};
+	int* m_score = nullptr;
 
 	SteamNetworkingIPAddr m_serverAddress{};
 
 	void OnConnected();
+	void OnPlayerDataReceived(const PlayerDataMsg& playerDataMsg);
 	void OnQuizFilePathsReceived(const QuizFilePaths& paths);
 	void OnQuestionReceived(const ServerQuestion& question);
 	void OnVerdictReceived(const ServerVerdict& verdict);

@@ -117,6 +117,28 @@ struct QuizChangeRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QuizChangeRequestDefaultTypeInternal _QuizChangeRequest_default_instance_;
 
+inline constexpr PlayerDataMsg::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        score_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerDataMsg::PlayerDataMsg(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PlayerDataMsgDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerDataMsgDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerDataMsgDefaultTypeInternal() {}
+  union {
+    PlayerDataMsg _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerDataMsgDefaultTypeInternal _PlayerDataMsg_default_instance_;
+
 inline constexpr ClientLogin::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : name_(
@@ -182,7 +204,7 @@ struct MessageEnvelopeDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageEnvelopeDefaultTypeInternal _MessageEnvelope_default_instance_;
-static ::_pb::Metadata file_level_metadata_src_2fPackets_2eproto[8];
+static ::_pb::Metadata file_level_metadata_src_2fPackets_2eproto[9];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_src_2fPackets_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_src_2fPackets_2eproto = nullptr;
@@ -254,6 +276,16 @@ const ::uint32_t TableStruct_src_2fPackets_2eproto::offsets[] PROTOBUF_SECTION_V
     PROTOBUF_FIELD_OFFSET(::QuizChangeRequest, _impl_.quizpath_),
     PROTOBUF_FIELD_OFFSET(::QuizChangeRequest, _impl_.repeats_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::PlayerDataMsg, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::PlayerDataMsg, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::PlayerDataMsg, _impl_.score_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _internal_metadata_),
     ~0u,  // no _extensions_
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _impl_._oneof_case_[0]),
@@ -262,6 +294,7 @@ const ::uint32_t TableStruct_src_2fPackets_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::MessageEnvelope, _impl_.type_),
+    ::_pbi::kInvalidFieldOffsetTag,
     ::_pbi::kInvalidFieldOffsetTag,
     ::_pbi::kInvalidFieldOffsetTag,
     ::_pbi::kInvalidFieldOffsetTag,
@@ -281,7 +314,8 @@ static const ::_pbi::MigrationSchema
         {38, -1, -1, sizeof(::QuizFilePathsRequest)},
         {46, -1, -1, sizeof(::QuizFilePaths)},
         {55, -1, -1, sizeof(::QuizChangeRequest)},
-        {65, -1, -1, sizeof(::MessageEnvelope)},
+        {65, -1, -1, sizeof(::PlayerDataMsg)},
+        {75, -1, -1, sizeof(::MessageEnvelope)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -292,6 +326,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::_QuizFilePathsRequest_default_instance_._instance,
     &::_QuizFilePaths_default_instance_._instance,
     &::_QuizChangeRequest_default_instance_._instance,
+    &::_PlayerDataMsg_default_instance_._instance,
     &::_MessageEnvelope_default_instance_._instance,
 };
 const char descriptor_table_protodef_src_2fPackets_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -302,33 +337,35 @@ const char descriptor_table_protodef_src_2fPackets_2eproto[] PROTOBUF_SECTION_VA
     "\001(\t\022\017\n\007correct\030\002 \001(\010\"\026\n\024QuizFilePathsReq"
     "uest\"\"\n\rQuizFilePaths\022\021\n\tquizPaths\030\001 \003(\t"
     "\"6\n\021QuizChangeRequest\022\020\n\010quizPath\030\001 \001(\t\022"
-    "\017\n\007repeats\030\002 \001(\005\"\242\004\n\017MessageEnvelope\022*\n\004"
-    "type\030\001 \001(\0162\034.MessageEnvelope.MessageType"
-    "\022#\n\013clientLogin\030\002 \001(\0132\014.ClientLoginH\000\022%\n"
-    "\014clientAnswer\030\003 \001(\0132\r.ClientAnswerH\000\022)\n\016"
-    "serverQuestion\030\004 \001(\0132\017.ServerQuestionH\000\022"
-    "\'\n\rserverVerdict\030\005 \001(\0132\016.ServerVerdictH\000"
-    "\022/\n\021quizChangeRequest\030\006 \001(\0132\022.QuizChange"
-    "RequestH\000\0225\n\024quizFilePathsRequest\030\007 \001(\0132"
-    "\025.QuizFilePathsRequestH\000\022\'\n\rquizFilePath"
-    "s\030\010 \001(\0132\016.QuizFilePathsH\000\"\246\001\n\013MessageTyp"
-    "e\022\020\n\014CLIENT_LOGIN\020\000\022\021\n\rCLIENT_ANSWER\020\001\022\023"
-    "\n\017SERVER_QUESTION\020\002\022\022\n\016SERVER_VERDICT\020\003\022"
-    "\027\n\023QUIZ_CHANGE_REQUEST\020\004\022\033\n\027QUIZ_FILE_PA"
-    "THS_REQUEST\020\005\022\023\n\017QUIZ_FILE_PATHS\020\006B\t\n\007pa"
-    "yloadb\006proto3"
+    "\017\n\007repeats\030\002 \001(\005\",\n\rPlayerDataMsg\022\014\n\004nam"
+    "e\030\001 \001(\t\022\r\n\005score\030\002 \001(\005\"\331\004\n\017MessageEnvelo"
+    "pe\022*\n\004type\030\001 \001(\0162\034.MessageEnvelope.Messa"
+    "geType\022#\n\013clientLogin\030\002 \001(\0132\014.ClientLogi"
+    "nH\000\022%\n\014clientAnswer\030\003 \001(\0132\r.ClientAnswer"
+    "H\000\022)\n\016serverQuestion\030\004 \001(\0132\017.ServerQuest"
+    "ionH\000\022\'\n\rserverVerdict\030\005 \001(\0132\016.ServerVer"
+    "dictH\000\022/\n\021quizChangeRequest\030\006 \001(\0132\022.Quiz"
+    "ChangeRequestH\000\0225\n\024quizFilePathsRequest\030"
+    "\007 \001(\0132\025.QuizFilePathsRequestH\000\022\'\n\rquizFi"
+    "lePaths\030\010 \001(\0132\016.QuizFilePathsH\000\022$\n\nplaye"
+    "rData\030\t \001(\0132\016.PlayerDataMsgH\000\"\267\001\n\013Messag"
+    "eType\022\020\n\014CLIENT_LOGIN\020\000\022\021\n\rCLIENT_ANSWER"
+    "\020\001\022\023\n\017SERVER_QUESTION\020\002\022\022\n\016SERVER_VERDIC"
+    "T\020\003\022\027\n\023QUIZ_CHANGE_REQUEST\020\004\022\033\n\027QUIZ_FIL"
+    "E_PATHS_REQUEST\020\005\022\023\n\017QUIZ_FILE_PATHS\020\006\022\017"
+    "\n\013PLAYER_DATA\020\007B\t\n\007payloadb\006proto3"
 };
 static ::absl::once_flag descriptor_table_src_2fPackets_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_src_2fPackets_2eproto = {
     false,
     false,
-    853,
+    954,
     descriptor_table_protodef_src_2fPackets_2eproto,
     "src/Packets.proto",
     &descriptor_table_src_2fPackets_2eproto_once,
     nullptr,
     0,
-    8,
+    9,
     schemas,
     file_default_instances,
     TableStruct_src_2fPackets_2eproto::offsets,
@@ -359,9 +396,9 @@ const ::google::protobuf::EnumDescriptor* MessageEnvelope_MessageType_descriptor
   return file_level_enum_descriptors_src_2fPackets_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t MessageEnvelope_MessageType_internal_data_[] = {
-    458752u, 0u, };
+    524288u, 0u, };
 bool MessageEnvelope_MessageType_IsValid(int value) {
-  return 0 <= value && value <= 6;
+  return 0 <= value && value <= 7;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
@@ -373,6 +410,7 @@ constexpr MessageEnvelope_MessageType MessageEnvelope::SERVER_VERDICT;
 constexpr MessageEnvelope_MessageType MessageEnvelope::QUIZ_CHANGE_REQUEST;
 constexpr MessageEnvelope_MessageType MessageEnvelope::QUIZ_FILE_PATHS_REQUEST;
 constexpr MessageEnvelope_MessageType MessageEnvelope::QUIZ_FILE_PATHS;
+constexpr MessageEnvelope_MessageType MessageEnvelope::PLAYER_DATA;
 constexpr MessageEnvelope_MessageType MessageEnvelope::MessageType_MIN;
 constexpr MessageEnvelope_MessageType MessageEnvelope::MessageType_MAX;
 constexpr int MessageEnvelope::MessageType_ARRAYSIZE;
@@ -1631,6 +1669,222 @@ void QuizChangeRequest::InternalSwap(QuizChangeRequest* PROTOBUF_RESTRICT other)
 }
 // ===================================================================
 
+class PlayerDataMsg::_Internal {
+ public:
+};
+
+PlayerDataMsg::PlayerDataMsg(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:PlayerDataMsg)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerDataMsg::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : name_(arena, from.name_),
+        _cached_size_{0} {}
+
+PlayerDataMsg::PlayerDataMsg(
+    ::google::protobuf::Arena* arena,
+    const PlayerDataMsg& from)
+    : ::google::protobuf::Message(arena) {
+  PlayerDataMsg* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.score_ = from._impl_.score_;
+
+  // @@protoc_insertion_point(copy_constructor:PlayerDataMsg)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerDataMsg::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        _cached_size_{0} {}
+
+inline void PlayerDataMsg::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.score_ = {};
+}
+PlayerDataMsg::~PlayerDataMsg() {
+  // @@protoc_insertion_point(destructor:PlayerDataMsg)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PlayerDataMsg::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void PlayerDataMsg::Clear() {
+// @@protoc_insertion_point(message_clear_start:PlayerDataMsg)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.score_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* PlayerDataMsg::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 26, 2> PlayerDataMsg::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PlayerDataMsg_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 score = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerDataMsg, _impl_.score_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerDataMsg, _impl_.score_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerDataMsg, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(PlayerDataMsg, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 score = 2;
+    {PROTOBUF_FIELD_OFFSET(PlayerDataMsg, _impl_.score_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\15\4\0\0\0\0\0\0"
+    "PlayerDataMsg"
+    "name"
+  }},
+};
+
+::uint8_t* PlayerDataMsg::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:PlayerDataMsg)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "PlayerDataMsg.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // int32 score = 2;
+  if (this->_internal_score() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_score(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:PlayerDataMsg)
+  return target;
+}
+
+::size_t PlayerDataMsg::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:PlayerDataMsg)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  // int32 score = 2;
+  if (this->_internal_score() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_score());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData PlayerDataMsg::_class_data_ = {
+    PlayerDataMsg::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* PlayerDataMsg::GetClassData() const {
+  return &_class_data_;
+}
+
+void PlayerDataMsg::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<PlayerDataMsg*>(&to_msg);
+  auto& from = static_cast<const PlayerDataMsg&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:PlayerDataMsg)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (from._internal_score() != 0) {
+    _this->_internal_set_score(from._internal_score());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayerDataMsg::CopyFrom(const PlayerDataMsg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:PlayerDataMsg)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool PlayerDataMsg::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* PlayerDataMsg::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PlayerDataMsg::InternalSwap(PlayerDataMsg* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+        swap(_impl_.score_, other->_impl_.score_);
+}
+
+::google::protobuf::Metadata PlayerDataMsg::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_src_2fPackets_2eproto_getter, &descriptor_table_src_2fPackets_2eproto_once,
+      file_level_metadata_src_2fPackets_2eproto[7]);
+}
+// ===================================================================
+
 class MessageEnvelope::_Internal {
  public:
   static constexpr ::int32_t kOneofCaseOffset =
@@ -1642,6 +1896,7 @@ class MessageEnvelope::_Internal {
   static const ::QuizChangeRequest& quizchangerequest(const MessageEnvelope* msg);
   static const ::QuizFilePathsRequest& quizfilepathsrequest(const MessageEnvelope* msg);
   static const ::QuizFilePaths& quizfilepaths(const MessageEnvelope* msg);
+  static const ::PlayerDataMsg& playerdata(const MessageEnvelope* msg);
 };
 
 const ::ClientLogin& MessageEnvelope::_Internal::clientlogin(const MessageEnvelope* msg) {
@@ -1664,6 +1919,9 @@ const ::QuizFilePathsRequest& MessageEnvelope::_Internal::quizfilepathsrequest(c
 }
 const ::QuizFilePaths& MessageEnvelope::_Internal::quizfilepaths(const MessageEnvelope* msg) {
   return *msg->_impl_.payload_.quizfilepaths_;
+}
+const ::PlayerDataMsg& MessageEnvelope::_Internal::playerdata(const MessageEnvelope* msg) {
+  return *msg->_impl_.payload_.playerdata_;
 }
 void MessageEnvelope::set_allocated_clientlogin(::ClientLogin* clientlogin) {
   ::google::protobuf::Arena* message_arena = GetArena();
@@ -1756,6 +2014,19 @@ void MessageEnvelope::set_allocated_quizfilepaths(::QuizFilePaths* quizfilepaths
   }
   // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.quizFilePaths)
 }
+void MessageEnvelope::set_allocated_playerdata(::PlayerDataMsg* playerdata) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_payload();
+  if (playerdata) {
+    ::google::protobuf::Arena* submessage_arena = playerdata->GetArena();
+    if (message_arena != submessage_arena) {
+      playerdata = ::google::protobuf::internal::GetOwnedMessage(message_arena, playerdata, submessage_arena);
+    }
+    set_has_playerdata();
+    _impl_.payload_.playerdata_ = playerdata;
+  }
+  // @@protoc_insertion_point(field_set_allocated:MessageEnvelope.playerData)
+}
 MessageEnvelope::MessageEnvelope(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
@@ -1801,6 +2072,9 @@ MessageEnvelope::MessageEnvelope(
         break;
       case kQuizFilePaths:
         _impl_.payload_.quizfilepaths_ = CreateMaybeMessage<::QuizFilePaths>(arena, *from._impl_.payload_.quizfilepaths_);
+        break;
+      case kPlayerData:
+        _impl_.payload_.playerdata_ = CreateMaybeMessage<::PlayerDataMsg>(arena, *from._impl_.payload_.playerdata_);
         break;
   }
 
@@ -1876,6 +2150,12 @@ void MessageEnvelope::clear_payload() {
       }
       break;
     }
+    case kPlayerData: {
+      if (GetArena() == nullptr) {
+        delete _impl_.payload_.playerdata_;
+      }
+      break;
+    }
     case PAYLOAD_NOT_SET: {
       break;
     }
@@ -1904,16 +2184,16 @@ const char* MessageEnvelope::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 8, 7, 0, 2> MessageEnvelope::_table_ = {
+const ::_pbi::TcParseTable<0, 9, 8, 0, 2> MessageEnvelope::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    8, 0,  // max_field_number, fast_idx_mask
+    9, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967040,  // skipmap
+    4294966784,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    8,  // num_field_entries
-    7,  // num_aux_entries
+    9,  // num_field_entries
+    8,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_MessageEnvelope_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -1948,6 +2228,9 @@ const ::_pbi::TcParseTable<0, 8, 7, 0, 2> MessageEnvelope::_table_ = {
     // .QuizFilePaths quizFilePaths = 8;
     {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.quizfilepaths_), _Internal::kOneofCaseOffset + 0, 6,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .PlayerDataMsg playerData = 9;
+    {PROTOBUF_FIELD_OFFSET(MessageEnvelope, _impl_.payload_.playerdata_), _Internal::kOneofCaseOffset + 0, 7,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::ClientLogin>()},
     {::_pbi::TcParser::GetTable<::ClientAnswer>()},
@@ -1956,6 +2239,7 @@ const ::_pbi::TcParseTable<0, 8, 7, 0, 2> MessageEnvelope::_table_ = {
     {::_pbi::TcParser::GetTable<::QuizChangeRequest>()},
     {::_pbi::FieldAuxDefaultMessage{}, &::_QuizFilePathsRequest_default_instance_},
     {::_pbi::TcParser::GetTable<::QuizFilePaths>()},
+    {::_pbi::TcParser::GetTable<::PlayerDataMsg>()},
   }}, {{
   }},
 };
@@ -2015,6 +2299,12 @@ const ::_pbi::TcParseTable<0, 8, 7, 0, 2> MessageEnvelope::_table_ = {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
           8, _Internal::quizfilepaths(this),
           _Internal::quizfilepaths(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kPlayerData: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          9, _Internal::playerdata(this),
+          _Internal::playerdata(this).GetCachedSize(), target, stream);
       break;
     }
     default:
@@ -2086,6 +2376,12 @@ const ::_pbi::TcParseTable<0, 8, 7, 0, 2> MessageEnvelope::_table_ = {
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.quizfilepaths_);
       break;
     }
+    // .PlayerDataMsg playerData = 9;
+    case kPlayerData: {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.payload_.playerdata_);
+      break;
+    }
     case PAYLOAD_NOT_SET: {
       break;
     }
@@ -2148,6 +2444,11 @@ void MessageEnvelope::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
           from._internal_quizfilepaths());
       break;
     }
+    case kPlayerData: {
+      _this->_internal_mutable_playerdata()->::PlayerDataMsg::MergeFrom(
+          from._internal_playerdata());
+      break;
+    }
     case PAYLOAD_NOT_SET: {
       break;
     }
@@ -2180,7 +2481,7 @@ void MessageEnvelope::InternalSwap(MessageEnvelope* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata MessageEnvelope::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_src_2fPackets_2eproto_getter, &descriptor_table_src_2fPackets_2eproto_once,
-      file_level_metadata_src_2fPackets_2eproto[7]);
+      file_level_metadata_src_2fPackets_2eproto[8]);
 }
 // @@protoc_insertion_point(namespace_scope)
 namespace google {

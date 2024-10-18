@@ -16,6 +16,8 @@
 
 #include "Quiz.h"
 #include "FilesHandler.h"
+#include "ScoreSystem.h"
+#include "PlayerInfo.h"
 
 
 namespace fs = std::filesystem;
@@ -36,6 +38,7 @@ public:
 	void LoadQuiz(QuizBlueprint& quizData);
 
 	void Run();
+	void SendPlayerData(const HSteamNetConnection& connection);
 	void SendFilePaths(const HSteamNetConnection& connection);
 	void SendQuestion(const HSteamNetConnection& connection);
 	void SendVerdict(HSteamNetConnection& connection, bool correct);
@@ -45,8 +48,9 @@ private:
 	~Server() = default;
 
 	std::unique_ptr<Quiz> m_quiz;
+	std::unique_ptr<ScoreSystem> m_scoreSystem;
 
-	std::map<HSteamNetConnection, std::unique_ptr<QuizCard>> m_players;
+	std::map<HSteamNetConnection, std::shared_ptr<PlayerInfo>> m_players;
 
 	static HSteamListenSocket m_listenSocket;
 	static HSteamNetPollGroup m_pollGroup;

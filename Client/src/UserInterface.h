@@ -40,14 +40,16 @@ struct QuizOptions
 class UI
 {
 public:
-	UI(InputField<std::string>&& inputField, QuizOptions&& quizOptions);
+	UI(InputField<std::string>&& inputField, QuizOptions&& quizOptions, int* score);
 
 	void Render();
 
 	void RenderInputField();
 	void RenderQuizOptions();
+	void RenderScore() const;
 
 private:
 	InputField<std::string> m_inputField;
 	QuizOptions m_quizOptions;
+	int* m_score = nullptr;
 };

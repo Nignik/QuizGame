@@ -30,6 +30,11 @@ message QuizChangeRequest {
     int32 repeats = 2;
 }
 
+message PlayerDataMsg {
+    string name = 1;
+    int32 score = 2;
+}
+
 message MessageEnvelope {
   enum MessageType {
     CLIENT_LOGIN = 0;
@@ -39,6 +44,7 @@ message MessageEnvelope {
     QUIZ_CHANGE_REQUEST = 4;
     QUIZ_FILE_PATHS_REQUEST = 5;
     QUIZ_FILE_PATHS = 6;
+    PLAYER_DATA = 7;
   }
 
   MessageType type = 1;
@@ -50,5 +56,6 @@ message MessageEnvelope {
     QuizChangeRequest quizChangeRequest = 6;
     QuizFilePathsRequest quizFilePathsRequest = 7;
     QuizFilePaths quizFilePaths = 8;
+    PlayerDataMsg playerData = 9;
   }
 }

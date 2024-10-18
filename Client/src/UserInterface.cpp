@@ -1,8 +1,9 @@
 #include "UserInterface.h"
 
-UI::UI(InputField<std::string>&& inputField, QuizOptions&& quizOptions)
+UI::UI(InputField<std::string>&& inputField, QuizOptions&& quizOptions, int* score)
 	: m_inputField(std::move(inputField)),
-	m_quizOptions(std::move(quizOptions))
+	m_quizOptions(std::move(quizOptions)),
+	m_score(score)
 {
 	ImGui::StyleColorsDark();
 }
@@ -11,6 +12,7 @@ void UI::Render()
 {
 	RenderInputField();
 	RenderQuizOptions();
+	RenderScore();
 }
 
 void UI::RenderInputField()
@@ -58,6 +60,15 @@ void UI::RenderQuizOptions()
 		if (*reps < 1) *reps = 1;
 		m_quizOptions.repeats.OnInput(m_quizOptions.repeats.val);
 	}
+
+	ImGui::End();
+}
+
+void UI::RenderScore() const
+{
+	ImGui::Begin("Score: ");
+
+	ImGui::Text(std::to_string(*m_score).c_str());
 
 	ImGui::End();
 }

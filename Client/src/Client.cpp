@@ -6,11 +6,12 @@ HSteamNetConnection Client::m_connection = k_HSteamNetConnection_Invalid;
 bool Client::m_isConnected = false;
 bool Client::m_isRunning = true;
 
-void Client::Init(std::string serverAddress)
+void Client::Init(std::string serverAddress, int* score)
 {
 	s_instance = new Client();
 
 	uint16 port = 27020;
+	s_instance->m_score = score;
 
 	SteamDatagramErrMsg errMsg;
 	if (!GameNetworkingSockets_Init(nullptr, errMsg))
@@ -121,7 +122,8 @@ void Client::PollMessages()
 		envelope.ParseFromString(receivedData);
 		switch (envelope.type())
 		{
-			case MessageEnvelope::QUIZ_FILE_PATHS:		OnQuizFilePathsReceived(envelope.quizfilepaths());			break;
+			case MessageEnvelope::PLAYER_DATA:			OnPlayerDataReceived(envelope.playerdata());			break;
+			case MessageEnvelope::QUIZ_FILE_PATHS:		OnQuizFilePathsReceived(envelope.quizfilepaths());		break;
 			case MessageEnvelope::SERVER_QUESTION:		OnQuestionReceived(envelope.serverquestion());			break;
 			case MessageEnvelope::SERVER_VERDICT:		OnVerdictReceived(envelope.serververdict());			break;
 		}
@@ -173,6 +175,11 @@ void Client::OnConnected()
 		m_connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
 }
 
+void Client::OnPlayerDataReceived(const PlayerDataMsg& playerData)
+{
+	*m_score = playerData.score();
+}
+
 void Client::OnQuizFilePathsReceived(const QuizFilePaths& paths)
 {
 	for (int i = 0; i < paths.quizpaths_size(); i++)
@@ -192,4 +199,5 @@ void Client::OnVerdictReceived(const ServerVerdict& verdict)
 {
 	std::cout << "The correct answer was: " << verdict.answer() << std::endl;
 	std::cout << "Your answer is: " << (verdict.correct() ? "correct" : "incorrect") << "\n\n";
+	*m_score += verdict.correct();
 }

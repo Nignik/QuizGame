@@ -10,6 +10,8 @@ void Server::Init()
 {
 	s_instance = new Server();
 
+	s_instance->m_scoreSystem = std::make_unique<ScoreSystem>(fs::path("C:/DEV/GamesDev/QuizGame/scores.yaml"));
+
 	SteamDatagramErrMsg errMsg;
 	if (!GameNetworkingSockets_Init(nullptr, errMsg))
 	{
@@ -72,9 +74,9 @@ void Server::LoadQuiz(QuizBlueprint& quizData)
 	std::ifstream file = getCsvFile(quizPath);
 	auto shuffle = std::make_shared<MultiplyShuffle>(quizData.repeats);
 	m_quiz = std::make_unique<Quiz>(extractCards(file), shuffle);
-	for (auto& [conn, card] : m_players)
+	for (auto& [conn, playerInfo] : m_players)
 	{
-		card = std::make_unique<QuizCard>(m_quiz->GetCurrentCard());
+		playerInfo->quizCard = std::make_unique<QuizCard>(m_quiz->GetCurrentCard());
 		SendQuestion(conn);
 	}
 	m_quiz->NextCard();
@@ -90,6 +92,22 @@ void Server::Run()
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
+}
+
+void Server::SendPlayerData(const HSteamNetConnection& connection)
+{
+	MessageEnvelope envelope;
+	envelope.set_type(MessageEnvelope::PLAYER_DATA);
+
+	PlayerDataMsg* message = envelope.mutable_playerdata();
+	message->set_name(m_players[connection]->name);
+	message->set_score(m_scoreSystem->GetPlayerScore(m_players[connection]->name));
+
+	std::string serializedData;
+	envelope.SerializeToString(&serializedData);
+
+	SteamNetworkingSockets()->SendMessageToConnection(
+		connection, serializedData.c_str(), serializedData.size(), k_nSteamNetworkingSend_Reliable, nullptr);
 }
 
 void Server::SendFilePaths(const HSteamNetConnection& connection)
@@ -131,7 +149,7 @@ void Server::SendVerdict(HSteamNetConnection& connection, bool correct)
 	envelope.set_type(MessageEnvelope::SERVER_VERDICT);
 
 	ServerVerdict* message = envelope.mutable_serververdict();
-	message->set_answer(m_players[connection]->answer);
+	message->set_answer(m_players[connection]->quizCard->answer);
 	message->set_correct(correct);
 
 	std::string serializedData;
@@ -184,6 +202,7 @@ void Server::OnPlayerDisconnect(HSteamNetConnection& connection)
 void Server::OnPlayerLogin(const ClientLogin& clientLogin, HSteamNetConnection& connection)
 {
 	std::cout << "New connection: " << clientLogin.name() << " from: " << connection << "\n\n";
+	m_players[connection] = std::make_shared<PlayerInfo>(connection, clientLogin.name(), nullptr);
 }
 
 void Server::OnQuizFilePathsRequest(HSteamNetConnection& connection)
@@ -201,11 +220,19 @@ void Server::OnQuizChangeRequest(const QuizChangeRequest& quizChangeRequest, HSt
 
 void Server::OnClientAnswer(const ClientAnswer& clientAnswer, HSteamNetConnection& connection)
 {
+	if (m_quiz == nullptr)
+	{
+		std::cout << "No quiz is currently active" << std::endl;
+		return;
+	}
 	std::cout << "Client answer: " << clientAnswer.answer() << " from: " << clientAnswer.name() << '(' << connection << ")\n\n";
 	
-	SendVerdict(connection, clientAnswer.answer() == m_players[connection]->answer ? true : false);
+	bool verdict = clientAnswer.answer() == m_players[connection]->quizCard->answer ? true : false;
+	
+	m_scoreSystem->IncreasePlayerScore(clientAnswer.name(), verdict);
+	SendVerdict(connection, verdict);
 
-	m_players[connection] = std::make_unique<QuizCard>(m_quiz->GetCurrentCard());
+	m_players[connection]->quizCard = std::make_unique<QuizCard>(m_quiz->GetCurrentCard());
 	SendQuestion(connection);
 
 	m_quiz->NextCard();
